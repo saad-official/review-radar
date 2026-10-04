@@ -1,0 +1,67 @@
+[project]
+name = "review-radar"
+version = "0.1.0"
+description = "App-store reviews in, triaged themes, policy-checked reply drafts and evidence-backed GitHub issue proposals out: a workflow-first agent whose every write waits for a human."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Saad Khan" }]
+dependencies = [
+    # Provider layer, pinned to the same commit of the public journey repo as Changelog Forge.
+    # A PEP 508 direct reference works with every installer (uv sync on Vercel and CI, pip).
+    "llm-kit @ git+https://github.com/saad-official/ai-engineering-journey.git@2d83dd543611d3644106d29f2f12ee8b092d9d09#subdirectory=packages/llm-kit",
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "psycopg[binary]>=3.2",
+    "psycopg-pool>=3.2",
+    "numpy>=2.1",
+    "cryptography>=43",
+    "python-multipart>=0.0.32",
+]
+
+[project.scripts]
+migrate = "review_radar.db.migrate:main"
+demo = "review_radar.demo:main"
+evals = "review_radar.evals.runner:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "respx>=0.21",
+    "ruff>=0.16",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/review_radar"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["web"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B011"]
+"src/review_radar/api/**" = ["B008"]
+# The report template is prose: long lines read better than split strings there.
+"src/review_radar/evals/runner.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "postgres: needs TEST_DATABASE_URL pointing at a disposable Postgres with pgvector",
+]

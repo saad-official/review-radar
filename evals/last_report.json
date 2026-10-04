@@ -1,0 +1,379 @@
+{
+ "generated_at": "2026-10-04T19:45:29+00:00",
+ "labelled": 200,
+ "label_distribution": {
+  "request": 11,
+  "praise": 109,
+  "billing": 53,
+  "bug": 14,
+  "other": 13
+ },
+ "extraction": {
+  "baseline_keywords": {
+   "n": 200,
+   "category": 0.715,
+   "sentiment": 0.795,
+   "has_device_info": 1.0,
+   "confusion": {
+    "billing": {
+     "billing": 45,
+     "bug": 4,
+     "other": 2,
+     "request": 1,
+     "praise": 1
+    },
+    "bug": {
+     "other": 3,
+     "bug": 8,
+     "praise": 2,
+     "billing": 1
+    },
+    "other": {
+     "other": 9,
+     "billing": 3,
+     "praise": 1
+    },
+    "praise": {
+     "praise": 76,
+     "other": 21,
+     "request": 2,
+     "billing": 10
+    },
+    "request": {
+     "request": 5,
+     "other": 3,
+     "billing": 3
+    }
+   },
+   "sentiment_lenient": 0.985
+  },
+  "recorded_run": {
+   "n": 30,
+   "category": 0.9333,
+   "sentiment": 0.9667,
+   "has_device_info": 1.0,
+   "confusion": {
+    "billing": {
+     "billing": 6
+    },
+    "bug": {
+     "bug": 3
+    },
+    "other": {
+     "other": 1
+    },
+    "praise": {
+     "praise": 17,
+     "other": 2
+    },
+    "request": {
+     "request": 1
+    }
+   },
+   "sentiment_lenient": 1.0,
+   "models": [
+    "gemini-3.5-flash-lite",
+    "gemini-embedding-001"
+   ]
+  },
+  "baseline_on_same_reviews": {
+   "n": 30,
+   "category": 0.7,
+   "sentiment": 0.8333,
+   "has_device_info": 1.0,
+   "confusion": {
+    "billing": {
+     "billing": 5,
+     "bug": 1
+    },
+    "bug": {
+     "other": 1,
+     "bug": 2
+    },
+    "other": {
+     "other": 1
+    },
+    "praise": {
+     "praise": 12,
+     "other": 6,
+     "request": 1
+    },
+    "request": {
+     "request": 1
+    }
+   },
+   "sentiment_lenient": 0.9333
+  }
+ },
+ "clustering": {
+  "sweep": [
+   {
+    "threshold": 0.1,
+    "global": {
+     "clusters": 15,
+     "purity": 0.72,
+     "completeness": 0.2115,
+     "completeness_by_label": {
+      "praise": 0.176,
+      "ads": 0.375,
+      "not_working": 0.2,
+      "free_tier": 0.2
+     },
+     "coverage": 0.8302
+    },
+    "within_kind": {
+     "clusters": 11,
+     "purity": 0.9211,
+     "completeness": 0.2885,
+     "completeness_by_label": {
+      "praise": 0.294,
+      "ads": 0.375,
+      "not_working": 0.2,
+      "free_tier": 0.2
+     },
+     "coverage": 0.6792
+    }
+   },
+   {
+    "threshold": 0.15,
+    "global": {
+     "clusters": 13,
+     "purity": 0.775,
+     "completeness": 0.1923,
+     "completeness_by_label": {
+      "praise": 0.176,
+      "ads": 0.375,
+      "not_working": 0.0,
+      "free_tier": 0.2
+     },
+     "coverage": 0.6792
+    },
+    "within_kind": {
+     "clusters": 10,
+     "purity": 0.9355,
+     "completeness": 0.1923,
+     "completeness_by_label": {
+      "praise": 0.176,
+      "ads": 0.375,
+      "not_working": 0.0,
+      "free_tier": 0.2
+     },
+     "coverage": 0.5849
+    }
+   },
+   {
+    "threshold": 0.2,
+    "global": {
+     "clusters": 10,
+     "purity": 0.8214,
+     "completeness": 0.1346,
+     "completeness_by_label": {
+      "praise": 0.118,
+      "ads": 0.25,
+      "not_working": 0.0,
+      "free_tier": 0.2
+     },
+     "coverage": 0.4906
+    },
+    "within_kind": {
+     "clusters": 7,
+     "purity": 1.0,
+     "completeness": 0.1154,
+     "completeness_by_label": {
+      "praise": 0.118,
+      "ads": 0.25,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.3774
+    }
+   },
+   {
+    "threshold": 0.25,
+    "global": {
+     "clusters": 8,
+     "purity": 0.8636,
+     "completeness": 0.1346,
+     "completeness_by_label": {
+      "praise": 0.118,
+      "ads": 0.25,
+      "not_working": 0.0,
+      "free_tier": 0.2
+     },
+     "coverage": 0.4151
+    },
+    "within_kind": {
+     "clusters": 6,
+     "purity": 1.0,
+     "completeness": 0.1154,
+     "completeness_by_label": {
+      "praise": 0.118,
+      "ads": 0.25,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.3208
+    }
+   },
+   {
+    "threshold": 0.3,
+    "global": {
+     "clusters": 6,
+     "purity": 0.8667,
+     "completeness": 0.0962,
+     "completeness_by_label": {
+      "praise": 0.088,
+      "ads": 0.125,
+      "not_working": 0.0,
+      "free_tier": 0.2
+     },
+     "coverage": 0.283
+    },
+    "within_kind": {
+     "clusters": 5,
+     "purity": 1.0,
+     "completeness": 0.0577,
+     "completeness_by_label": {
+      "praise": 0.088,
+      "ads": 0.0,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.2264
+    }
+   },
+   {
+    "threshold": 0.4,
+    "global": {
+     "clusters": 3,
+     "purity": 1.0,
+     "completeness": 0.0385,
+     "completeness_by_label": {
+      "praise": 0.059,
+      "ads": 0.0,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.1132
+    },
+    "within_kind": {
+     "clusters": 3,
+     "purity": 1.0,
+     "completeness": 0.0385,
+     "completeness_by_label": {
+      "praise": 0.059,
+      "ads": 0.0,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.1132
+    }
+   },
+   {
+    "threshold": 0.5,
+    "global": {
+     "clusters": 1,
+     "purity": 1.0,
+     "completeness": 0.0385,
+     "completeness_by_label": {
+      "praise": 0.059,
+      "ads": 0.0,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.0377
+    },
+    "within_kind": {
+     "clusters": 1,
+     "purity": 1.0,
+     "completeness": 0.0385,
+     "completeness_by_label": {
+      "praise": 0.059,
+      "ads": 0.0,
+      "not_working": 0.0,
+      "free_tier": 0.0
+     },
+     "coverage": 0.0377
+    }
+   }
+  ],
+  "model": "hash-768 (offline lexical stand-in)",
+  "stand_in": true
+ },
+ "trajectory": {
+  "rules": {
+   "no_unapproved_writes": true,
+   "only_known_tools": true,
+   "evidence_ids_exist": true,
+   "budget_respected": true,
+   "step_count_within_cap": true
+  },
+  "passed": true,
+  "model_steps": 0,
+  "tool_calls": 5,
+  "cap": 24,
+  "usd": 0.0081173,
+  "max_usd": 0.1,
+  "violations": {
+   "unknown_tools": [],
+   "executor_calls": [],
+   "decided_without_operator": [],
+   "issues_with_missing_evidence": []
+  }
+ },
+ "guardrails": {
+  "attempts": 0,
+  "first_attempt_pass_rate": null,
+  "stored_replies": 0,
+  "stored_pass_rate": null,
+  "mean_length": null
+ },
+ "issue_template": {
+  "issues": 0,
+  "completeness": null,
+  "mean_evidence_quotes": null
+ },
+ "cost": {
+  "reviews": 30,
+  "calls": 4,
+  "tokens": 5945,
+  "status": "failed",
+  "error": "LLMTransientError: 429 from embeddings: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex",
+  "usd": 0.0081173,
+  "usd_per_50_reviews": 0.013529,
+  "usd_per_month_daily_50": 0.4059,
+  "by_model": [
+   {
+    "usd": 0.0081173,
+    "calls": 3,
+    "model": "gemini-3.5-flash-lite",
+    "stage": "extract",
+    "provider": "gemini",
+    "prompt_tokens": 3066,
+    "reasoning_tokens": 0,
+    "completion_tokens": 2879
+   },
+   {
+    "usd": 0.0,
+    "calls": 1,
+    "model": "gemini-embedding-001",
+    "stage": "embed",
+    "provider": "gemini",
+    "prompt_tokens": 0,
+    "reasoning_tokens": 0,
+    "completion_tokens": 0
+   }
+  ],
+  "seconds": 53.1
+ },
+ "scorer_self_test": {
+  "all_rules_fail_on_bad_trajectory": true,
+  "rules": {
+   "no_unapproved_writes": false,
+   "only_known_tools": false,
+   "evidence_ids_exist": false,
+   "budget_respected": false,
+   "step_count_within_cap": false
+  }
+ }
+}

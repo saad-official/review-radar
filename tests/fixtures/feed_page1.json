@@ -1,0 +1,168 @@
+{
+ "feed": {
+  "author": {
+   "name": {
+    "label": "iTunes Store"
+   }
+  },
+  "entry": [
+   {
+    "author": {
+     "uri": {
+      "label": "https://itunes.apple.com/us/reviews/id1"
+     },
+     "name": {
+      "label": "tester1"
+     },
+     "label": ""
+    },
+    "updated": {
+     "label": "2026-10-03T01:15:30-07:00"
+    },
+    "im:rating": {
+     "label": "1"
+    },
+    "im:version": {
+     "label": "9.1.88"
+    },
+    "id": {
+     "label": "1001"
+    },
+    "title": {
+     "label": "Crash on start"
+    },
+    "content": {
+     "label": "Synthetic: the app crashes at start.",
+     "attributes": {
+      "type": "text"
+     }
+    },
+    "link": {
+     "attributes": {
+      "rel": "related",
+      "href": "https://itunes.apple.com/us/review?id=1"
+     }
+    },
+    "im:voteSum": {
+     "label": "0"
+    },
+    "im:contentType": {
+     "attributes": {
+      "term": "Application",
+      "label": "Application"
+     }
+    },
+    "im:voteCount": {
+     "label": "0"
+    }
+   },
+   {
+    "author": {
+     "uri": {
+      "label": "https://itunes.apple.com/us/reviews/id2"
+     },
+     "name": {
+      "label": "tester2"
+     },
+     "label": ""
+    },
+    "updated": {
+     "label": "2026-10-03T02:15:30-07:00"
+    },
+    "im:rating": {
+     "label": "5"
+    },
+    "im:version": {
+     "label": "9.1.88"
+    },
+    "id": {
+     "label": "1002"
+    },
+    "title": {
+     "label": "Nice"
+    },
+    "content": {
+     "label": "Synthetic: nice and smooth.",
+     "attributes": {
+      "type": "text"
+     }
+    },
+    "link": {
+     "attributes": {
+      "rel": "related",
+      "href": "https://itunes.apple.com/us/review?id=1"
+     }
+    },
+    "im:voteSum": {
+     "label": "0"
+    },
+    "im:contentType": {
+     "attributes": {
+      "term": "Application",
+      "label": "Application"
+     }
+    },
+    "im:voteCount": {
+     "label": "0"
+    }
+   },
+   {
+    "author": {
+     "uri": {
+      "label": "https://itunes.apple.com/us/reviews/id3"
+     },
+     "name": {
+      "label": "tester3"
+     },
+     "label": ""
+    },
+    "updated": {
+     "label": "2026-10-03T03:15:30-07:00"
+    },
+    "im:rating": {
+     "label": "2"
+    },
+    "im:version": {
+     "label": "9.1.88"
+    },
+    "id": {
+     "label": "1003"
+    },
+    "title": {
+     "label": "Slow"
+    },
+    "content": {
+     "label": "Synthetic: the search is slow.",
+     "attributes": {
+      "type": "text"
+     }
+    },
+    "link": {
+     "attributes": {
+      "rel": "related",
+      "href": "https://itunes.apple.com/us/review?id=1"
+     }
+    },
+    "im:voteSum": {
+     "label": "0"
+    },
+    "im:contentType": {
+     "attributes": {
+      "term": "Application",
+      "label": "Application"
+     }
+    },
+    "im:voteCount": {
+     "label": "0"
+    }
+   }
+  ],
+  "updated": {
+   "label": "2026-10-04T11:39:05-07:00"
+  },
+  "id": {
+   "label": "x"
+  },
+  "link": []
+ }
+}

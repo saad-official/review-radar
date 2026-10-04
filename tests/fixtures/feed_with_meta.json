@@ -1,0 +1,79 @@
+{
+ "feed": {
+  "author": {
+   "name": {
+    "label": "iTunes Store"
+   }
+  },
+  "entry": [
+   {
+    "im:name": {
+     "label": "Some App"
+    },
+    "id": {
+     "label": "https://apps.apple.com/app/id1"
+    },
+    "title": {
+     "label": "Some App"
+    }
+   },
+   {
+    "author": {
+     "uri": {
+      "label": "https://itunes.apple.com/us/reviews/id6"
+     },
+     "name": {
+      "label": "tester6"
+     },
+     "label": ""
+    },
+    "updated": {
+     "label": "2026-10-03T06:15:30-07:00"
+    },
+    "im:rating": {
+     "label": "1"
+    },
+    "im:version": {
+     "label": "9.1.88"
+    },
+    "id": {
+     "label": "1006"
+    },
+    "title": {
+     "label": "Bad"
+    },
+    "content": {
+     "label": "Synthetic: bad update.",
+     "attributes": {
+      "type": "text"
+     }
+    },
+    "link": {
+     "attributes": {
+      "rel": "related",
+      "href": "https://itunes.apple.com/us/review?id=1"
+     }
+    },
+    "im:voteSum": {
+     "label": "0"
+    },
+    "im:contentType": {
+     "attributes": {
+      "term": "Application",
+      "label": "Application"
+     }
+    },
+    "im:voteCount": {
+     "label": "0"
+    }
+   }
+  ],
+  "updated": {
+   "label": "2026-10-04T11:39:05-07:00"
+  },
+  "id": {
+   "label": "x"
+  },
+  "link": []
+ }
+}

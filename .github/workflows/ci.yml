@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    name: API (lint, tests, recorded evals)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install
+        run: uv sync --frozen
+      - name: Lint
+        run: uv run ruff check .
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Tests
+        run: uv run pytest -q
+      - name: Evals (recorded model outputs, no network, no keys)
+        run: uv run evals --no-write
+
+  postgres:
+    name: Postgres store (migrations + store semantics)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - run: uv run pytest -q -m postgres
+
+  web:
+    name: Web (lint, typegen, types, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # `hashFiles` is not available in a job-level `if`, so the guard is a step output.
+      - id: present
+        run: echo "web=${{ hashFiles('web/package.json') != '' }}" >> "$GITHUB_OUTPUT"
+      - if: steps.present.outputs.web == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: web/package.json
+      - if: steps.present.outputs.web == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - if: steps.present.outputs.web == 'true'
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+      - if: steps.present.outputs.web == 'true'
+        working-directory: web
+        run: pnpm lint
+      - if: steps.present.outputs.web == 'true'
+        working-directory: web
+        run: pnpm exec next typegen
+      - if: steps.present.outputs.web == 'true'
+        working-directory: web
+        run: pnpm exec tsc --noEmit
+      - if: steps.present.outputs.web == 'true'
+        working-directory: web
+        run: pnpm build

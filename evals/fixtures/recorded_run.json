@@ -1,0 +1,911 @@
+{
+ "recorded_at": "2026-10-04T19:42:39+00:00",
+ "app": "Spotify: Music and Podcasts",
+ "policy": "Tone: friendly, brief, no corporate filler. Sign as \"the team\" at most.\nPoint people to in-app support (Settings > Support) instead of links.\nbanned: premium trial; discount",
+ "run": {
+  "id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+  "status": "failed",
+  "error": "LLMTransientError: 429 from embeddings: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex",
+  "summary": null,
+  "stats": {},
+  "usage": {
+   "usd": 0.0081173,
+   "calls": 4,
+   "max_usd": 0.1,
+   "summary": "4 calls  3066 in / 2879 out (0 hidden reasoning)  $0.008117 at paid rates",
+   "by_model": [
+    {
+     "usd": 0.0081173,
+     "calls": 3,
+     "model": "gemini-3.5-flash-lite",
+     "stage": "extract",
+     "provider": "gemini",
+     "prompt_tokens": 3066,
+     "reasoning_tokens": 0,
+     "completion_tokens": 2879
+    },
+    {
+     "usd": 0.0,
+     "calls": 1,
+     "model": "gemini-embedding-001",
+     "stage": "embed",
+     "provider": "gemini",
+     "prompt_tokens": 0,
+     "reasoning_tokens": 0,
+     "completion_tokens": 0
+    }
+   ],
+   "failed_calls": 1,
+   "total_tokens": 5945,
+   "prompt_tokens": 3066,
+   "reasoning_tokens": 0,
+   "completion_tokens": 2879,
+   "prices_verified_on": "2026-09-05"
+  },
+  "budget": {
+   "max_usd": 0.1,
+   "prompts": {
+    "agent": "v1",
+    "theme": "v1",
+    "extract": "v1"
+   },
+   "routing": {
+    "tiers": {
+     "agent": [
+      "groq:openai/gpt-oss-120b",
+      "gemini:gemini-3.5-flash-lite"
+     ],
+     "theme": [
+      "groq:openai/gpt-oss-20b",
+      "gemini:gemini-3.5-flash-lite"
+     ],
+     "extract": [
+      "groq:openai/gpt-oss-20b",
+      "gemini:gemini-3.5-flash-lite"
+     ]
+    },
+    "version": "2026-10-04",
+    "budget_usd": 0.1
+   },
+   "deadline_s": 200.0,
+   "max_reviews": 30,
+   "max_iterations": 24,
+   "process_time_budget_s": 240.0
+  },
+  "models": [
+   "gemini-3.5-flash-lite",
+   "gemini-embedding-001"
+  ],
+  "seconds": 53.1
+ },
+ "review_ids": [
+  "14622068328",
+  "14622055785",
+  "14621978566",
+  "14621927782",
+  "14621920368",
+  "14621915395",
+  "14621802707",
+  "14621799897",
+  "14621775147",
+  "14621759821",
+  "14621748413",
+  "14621683050",
+  "14621659207",
+  "14621637088",
+  "14621608229",
+  "14621592777",
+  "14621549465",
+  "14621545637",
+  "14621542558",
+  "14621520105",
+  "14621484107",
+  "14621459065",
+  "14621420636",
+  "14621412193",
+  "14621408557",
+  "14621404086",
+  "14621398723",
+  "14621366147",
+  "14621356665",
+  "14621321630"
+ ],
+ "signals": {
+  "14622068328": {
+   "review_id": "a9dd5373-a1e6-4d04-854e-818f9743ea39",
+   "category": "request",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "catalog",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Remove AI artists",
+    "AI has no place in music."
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.364406Z"
+  },
+  "14622055785": {
+   "review_id": "ffb09555-76e7-4bae-acdd-f060af936db6",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Cant live without it!!!",
+    "The best music streaming service there is!!!!"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.364406Z"
+  },
+  "14621978566": {
+   "review_id": "1d13f22d-7a0e-49bc-a9d0-ecc94ccae9f0",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "playlists",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "You can create playlists, share accounts, and listen to episodes!"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621927782": {
+   "review_id": "b6527dd8-237c-4b4f-b72b-ab1ee41d8445",
+   "category": "billing",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Malparida sea la persona q cre\u00f3 los anuncios"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621920368": {
+   "review_id": "de1f10a3-7b4c-4592-925e-456a12893b07",
+   "category": "bug",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "playback",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "My sportify insist working again and it make me angry"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621915395": {
+   "review_id": "20618d17-950c-4511-b285-19c42b400efa",
+   "category": "bug",
+   "sentiment": "mixed",
+   "severity": 4,
+   "feature_area": "login",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "When I try to open the app, it loads, then immediately closes.",
+    "there is literally no way to sign out or fix the issue"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621802707": {
+   "review_id": "8477d6b2-bf93-4e74-a98b-45507df15348",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Absolute cinema"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621799897": {
+   "review_id": "34c9f7ce-64b7-458d-be13-86db23c9d744",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "I love it sm"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621775147": {
+   "review_id": "17cefc8f-30db-4a27-b795-17d14dceb4fe",
+   "category": "billing",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Stoppppp with the to much advert !"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621759821": {
+   "review_id": "14d50701-e33f-43d8-be5c-d856e4bd91c8",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "This is peak",
+    "I love it"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:05.365449Z"
+  },
+  "14621748413": {
+   "review_id": "154f5440-bf8e-4ad4-9c84-871e6b598263",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Spotify is goated!",
+    "I wanna marry this app 10/10"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621683050": {
+   "review_id": "787747fd-f8af-4403-8c55-2561a46a2fcd",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "playback",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "this is the only way you should be streaming and listening"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621659207": {
+   "review_id": "79d7d169-6b46-4008-8473-313af35b514d",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "best app ever",
+    "best thing ever"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621637088": {
+   "review_id": "2cccfd1f-eea0-4676-ae11-a3e3e5b54fc9",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "I LOVEEEEEEEEE"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621608229": {
+   "review_id": "1b1716d0-3da4-439d-b465-cc1666bd79cc",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Some of the songs in this app have saved me"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621592777": {
+   "review_id": "a8d93785-0c58-479f-939d-86dc39b7d34c",
+   "category": "other",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "It was lowkey alright in-till I seen drake dropped"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.488608Z"
+  },
+  "14621549465": {
+   "review_id": "491eb054-5fb9-4c7a-9462-201758083851",
+   "category": "billing",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "HORRIBLE ADS WAY TOO OFTEN"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.489659Z"
+  },
+  "14621545637": {
+   "review_id": "615a2041-99ce-48d3-8f90-8c577d60e235",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "recommendations",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Spotify is easily one of the best music and entertainment apps out there!",
+    "10/10 \u2014 absolutely recommend Spotify!"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.489659Z"
+  },
+  "14621542558": {
+   "review_id": "3f99340f-de5f-400b-87ce-d03eb755c290",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "music is a savior"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.489659Z"
+  },
+  "14621520105": {
+   "review_id": "d566a512-9d72-407f-9da3-318204769ce2",
+   "category": "other",
+   "sentiment": "neutral",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:14.489659Z"
+  },
+  "14621484107": {
+   "review_id": "04a8166b-9026-4ac2-a0c4-cb64e2d1a20d",
+   "category": "bug",
+   "sentiment": "negative",
+   "severity": 4,
+   "feature_area": "connectivity",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "your stupid app wont even work"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621459065": {
+   "review_id": "1a330504-16fb-4745-852f-b3f65f4e5adc",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "recommendations",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Nice additional selections from my choices\u2026"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621420636": {
+   "review_id": "879ea3d5-d75c-4beb-a570-d9750ab240b9",
+   "category": "other",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Visca Barca"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621412193": {
+   "review_id": "2df1b4a3-6dd3-4ced-a0f9-90087d79c8c7",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "music recommend",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "good music recommend 10/10"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621408557": {
+   "review_id": "829e05e4-f0ec-48e8-a50b-e0106a20cb74",
+   "category": "billing",
+   "sentiment": "negative",
+   "severity": 3,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Offensive, uncomfortable, weird Ads",
+    "I'm not planning to renew my subscription anytime soon"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621404086": {
+   "review_id": "dac33023-afd5-47cc-b125-10419f21d1b4",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Being using this app for the longest I love it"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621398723": {
+   "review_id": "3cc0237a-b7c2-4a3e-9423-76e1ba530007",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": "music",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Music"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621366147": {
+   "review_id": "cef8e9fe-50a4-487b-b4d1-066d508f3b78",
+   "category": "billing",
+   "sentiment": "mixed",
+   "severity": 3,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "a lot of adds if you don\u2019t have premium.",
+    "you can\u2019t skip songs, play on repeat"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621356665": {
+   "review_id": "c9e4b7b1-fe2b-482e-921f-2002b9e82ac8",
+   "category": "praise",
+   "sentiment": "positive",
+   "severity": 1,
+   "feature_area": null,
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "love this app bro. literally saves me whenever I\u2019m somewhere"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  },
+  "14621321630": {
+   "review_id": "26dd8c43-67b8-4f68-8555-0e929cfc72bf",
+   "category": "billing",
+   "sentiment": "neutral",
+   "severity": 2,
+   "feature_area": "ads",
+   "devices": [],
+   "os_versions": [],
+   "app_versions": [],
+   "quotes": [
+    "Why Adds"
+   ],
+   "flags": [],
+   "model": "gemini-3.5-flash-lite",
+   "prompt_version": "extract.v1@af65ed6c",
+   "created_at": "2026-10-04T19:42:22.234363Z"
+  }
+ },
+ "themes": [],
+ "proposals": [],
+ "propose": null,
+ "steps": [
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 1,
+   "at": "2026-10-04T19:41:38.480668Z",
+   "stage": "queued",
+   "kind": "note",
+   "name": "status",
+   "args": {},
+   "result": {
+    "status": "queued"
+   },
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 2,
+   "at": "2026-10-04T19:41:47.378008Z",
+   "stage": "fetch",
+   "kind": "note",
+   "name": "status",
+   "args": {},
+   "result": {
+    "status": "fetching"
+   },
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 3,
+   "at": "2026-10-04T19:41:48.427481Z",
+   "stage": "fetch",
+   "kind": "tool_call",
+   "name": "fetch_reviews",
+   "args": {
+    "app": "324684580",
+    "store": "ios",
+    "country": "us"
+   },
+   "result": {},
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 4,
+   "at": "2026-10-04T19:41:50.131305Z",
+   "stage": "fetch",
+   "kind": "tool_result",
+   "name": "fetch_reviews",
+   "args": {},
+   "result": {
+    "reason": "no source configured",
+    "skipped": true,
+    "working_set": 30
+   },
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 5,
+   "at": "2026-10-04T19:41:55.127951Z",
+   "stage": "extract",
+   "kind": "note",
+   "name": "status",
+   "args": {},
+   "result": {
+    "status": "extracting"
+   },
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 6,
+   "at": "2026-10-04T19:41:57.530514Z",
+   "stage": "extract",
+   "kind": "tool_call",
+   "name": "extract_signals",
+   "args": {
+    "batch": 1,
+    "review_ids": [
+     "a9dd5373-a1e6-4d04-854e-818f9743ea39",
+     "ffb09555-76e7-4bae-acdd-f060af936db6",
+     "1d13f22d-7a0e-49bc-a9d0-ecc94ccae9f0",
+     "b6527dd8-237c-4b4f-b72b-ab1ee41d8445",
+     "de1f10a3-7b4c-4592-925e-456a12893b07",
+     "20618d17-950c-4511-b285-19c42b400efa",
+     "8477d6b2-bf93-4e74-a98b-45507df15348",
+     "34c9f7ce-64b7-458d-be13-86db23c9d744",
+     "17cefc8f-30db-4a27-b795-17d14dceb4fe",
+     "14d50701-e33f-43d8-be5c-d856e4bd91c8"
+    ]
+   },
+   "result": {},
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 7,
+   "at": "2026-10-04T19:42:07.088775Z",
+   "stage": "extract",
+   "kind": "tool_result",
+   "name": "extract_signals",
+   "args": {},
+   "result": {
+    "model": "gemini-3.5-flash-lite",
+    "missing": 0,
+    "extracted": 10,
+    "categories": {
+     "bug": 2,
+     "praise": 5,
+     "billing": 2,
+     "request": 1
+    }
+   },
+   "usage": {
+    "usd": 0.0027197,
+    "calls": 1,
+    "model": "gemini-3.5-flash-lite",
+    "errors": null,
+    "latency_s": 5.515,
+    "prompt_tokens": 974,
+    "reasoning_tokens": 0,
+    "completion_tokens": 971
+   }
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 8,
+   "at": "2026-10-04T19:42:08.351946Z",
+   "stage": "extract",
+   "kind": "tool_call",
+   "name": "extract_signals",
+   "args": {
+    "batch": 2,
+    "review_ids": [
+     "154f5440-bf8e-4ad4-9c84-871e6b598263",
+     "787747fd-f8af-4403-8c55-2561a46a2fcd",
+     "79d7d169-6b46-4008-8473-313af35b514d",
+     "2cccfd1f-eea0-4676-ae11-a3e3e5b54fc9",
+     "1b1716d0-3da4-439d-b465-cc1666bd79cc",
+     "a8d93785-0c58-479f-939d-86dc39b7d34c",
+     "491eb054-5fb9-4c7a-9462-201758083851",
+     "615a2041-99ce-48d3-8f90-8c577d60e235",
+     "3f99340f-de5f-400b-87ce-d03eb755c290",
+     "d566a512-9d72-407f-9da3-318204769ce2"
+    ]
+   },
+   "result": {},
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 9,
+   "at": "2026-10-04T19:42:16.005505Z",
+   "stage": "extract",
+   "kind": "tool_result",
+   "name": "extract_signals",
+   "args": {},
+   "result": {
+    "model": "gemini-3.5-flash-lite",
+    "missing": 0,
+    "extracted": 10,
+    "categories": {
+     "other": 2,
+     "praise": 7,
+     "billing": 1
+    }
+   },
+   "usage": {
+    "usd": 0.0027134,
+    "calls": 1,
+    "model": "gemini-3.5-flash-lite",
+    "errors": null,
+    "latency_s": 4.235,
+    "prompt_tokens": 1103,
+    "reasoning_tokens": 0,
+    "completion_tokens": 953
+   }
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 10,
+   "at": "2026-10-04T19:42:17.758041Z",
+   "stage": "extract",
+   "kind": "tool_call",
+   "name": "extract_signals",
+   "args": {
+    "batch": 3,
+    "review_ids": [
+     "04a8166b-9026-4ac2-a0c4-cb64e2d1a20d",
+     "1a330504-16fb-4745-852f-b3f65f4e5adc",
+     "879ea3d5-d75c-4beb-a570-d9750ab240b9",
+     "2df1b4a3-6dd3-4ced-a0f9-90087d79c8c7",
+     "829e05e4-f0ec-48e8-a50b-e0106a20cb74",
+     "dac33023-afd5-47cc-b125-10419f21d1b4",
+     "3cc0237a-b7c2-4a3e-9423-76e1ba530007",
+     "cef8e9fe-50a4-487b-b4d1-066d508f3b78",
+     "c9e4b7b1-fe2b-482e-921f-2002b9e82ac8",
+     "26dd8c43-67b8-4f68-8555-0e929cfc72bf"
+    ]
+   },
+   "result": {},
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 11,
+   "at": "2026-10-04T19:42:23.855570Z",
+   "stage": "extract",
+   "kind": "tool_result",
+   "name": "extract_signals",
+   "args": {},
+   "result": {
+    "model": "gemini-3.5-flash-lite",
+    "missing": 0,
+    "extracted": 10,
+    "categories": {
+     "bug": 1,
+     "other": 1,
+     "praise": 5,
+     "billing": 3
+    }
+   },
+   "usage": {
+    "usd": 0.0026842,
+    "calls": 1,
+    "model": "gemini-3.5-flash-lite",
+    "errors": null,
+    "latency_s": 3.094,
+    "prompt_tokens": 989,
+    "reasoning_tokens": 0,
+    "completion_tokens": 955
+   }
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 12,
+   "at": "2026-10-04T19:42:27.523279Z",
+   "stage": "embed",
+   "kind": "note",
+   "name": "status",
+   "args": {},
+   "result": {
+    "status": "embedding"
+   },
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 13,
+   "at": "2026-10-04T19:42:28.383072Z",
+   "stage": "embed",
+   "kind": "tool_call",
+   "name": "embed_reviews",
+   "args": {
+    "count": 30,
+    "model": "gemini-embedding-001"
+   },
+   "result": {},
+   "usage": null
+  },
+  {
+   "run_id": "32f6daf7-091d-4c97-852a-121b9e9b0c2c",
+   "seq": 14,
+   "at": "2026-10-04T19:42:32.243859Z",
+   "stage": "finish",
+   "kind": "note",
+   "name": "status",
+   "args": {},
+   "result": {
+    "error": "LLMTransientError: 429 from embeddings: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex",
+    "status": "failed"
+   },
+   "usage": null
+  }
+ ]
+}

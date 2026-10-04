@@ -1,0 +1,66 @@
+{
+ "feed": {
+  "author": {
+   "name": {
+    "label": "iTunes Store"
+   }
+  },
+  "entry": {
+   "author": {
+    "uri": {
+     "label": "https://itunes.apple.com/us/reviews/id5"
+    },
+    "name": {
+     "label": "tester5"
+    },
+    "label": ""
+   },
+   "updated": {
+    "label": "2026-10-03T05:15:30-07:00"
+   },
+   "im:rating": {
+    "label": "3"
+   },
+   "im:version": {
+    "label": "9.1.88"
+   },
+   "id": {
+    "label": "1005"
+   },
+   "title": {
+    "label": "Okay"
+   },
+   "content": {
+    "label": "Synthetic: it is okay.",
+    "attributes": {
+     "type": "text"
+    }
+   },
+   "link": {
+    "attributes": {
+     "rel": "related",
+     "href": "https://itunes.apple.com/us/review?id=1"
+    }
+   },
+   "im:voteSum": {
+    "label": "0"
+   },
+   "im:contentType": {
+    "attributes": {
+     "term": "Application",
+     "label": "Application"
+    }
+   },
+   "im:voteCount": {
+    "label": "0"
+   }
+  },
+  "updated": {
+   "label": "2026-10-04T11:39:05-07:00"
+  },
+  "id": {
+   "label": "x"
+  },
+  "link": []
+ }
+}

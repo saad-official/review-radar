@@ -1,0 +1,17 @@
+# The public demo app: a well-known free iOS app with many recent reviews, so the daily run
+# always has something new. Reviews come from Apple's public customer-reviews RSS feed.
+[app]
+store = "ios"
+store_id = "324684580"   # Spotify: Music and Podcasts (App Store, US)
+name = "Spotify: Music and Podcasts"
+country = "us"
+github_repo = "saad-official/review-radar-demo-issues"
+public = true
+policy = """
+Tone: friendly, brief, no corporate filler. Sign as "the team" at most.
+Point people to in-app support (Settings > Support) instead of links.
+banned: premium trial; discount
+"""
+
+[seed]
+max_reviews = 200   # 4 feed pages

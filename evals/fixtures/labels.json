@@ -1,0 +1,1068 @@
+{
+ "labelled_by": "hand (project author), 2026-10-04",
+ "guide": "docs/evals.md#labelling-guide",
+ "labels": {
+  "14622068328": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14622055785": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621978566": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621927782": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621920368": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621915395": {
+   "category": "bug",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621802707": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621799897": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621775147": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621759821": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621748413": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621683050": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621659207": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621637088": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621608229": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621592777": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621549465": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621545637": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621542558": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621520105": {
+   "category": "other",
+   "sentiment": "neutral",
+   "has_device_info": false
+  },
+  "14621484107": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621459065": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621420636": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621412193": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621408557": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621404086": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621398723": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621366147": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621356665": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621321630": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621312853": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621303812": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621302986": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621297887": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621296462": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621289990": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621285899": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621269606": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621267303": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621260243": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621245386": {
+   "category": "bug",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621245074": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621242067": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621241999": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621228290": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621223513": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": true
+  },
+  "14621222789": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": true
+  },
+  "14621191788": {
+   "category": "request",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621186743": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621178004": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621163931": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621159222": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621157251": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621155714": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621151333": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621146664": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621145984": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621119300": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621113547": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621098020": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621094305": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621092947": {
+   "category": "request",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621091498": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621087876": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621081245": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621072734": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621063137": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621061009": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621057966": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14621036185": {
+   "category": "request",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621019276": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621018242": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14621007018": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621005212": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14621002942": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620992238": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620987138": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620986241": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620982637": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620979214": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620956575": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620954426": {
+   "category": "request",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620943588": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620938299": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620932767": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620932463": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620925077": {
+   "category": "billing",
+   "sentiment": "neutral",
+   "has_device_info": false
+  },
+  "14620903069": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620882906": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620873350": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620871471": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620867629": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620854025": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620842859": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620831278": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": true
+  },
+  "14620829912": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620815695": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620815401": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620801149": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620795209": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620793426": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620792894": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620784893": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620777190": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620766845": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620765535": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620731420": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620726115": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620694543": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620687090": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620679920": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620665607": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620665579": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620664036": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620661198": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620658072": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620656456": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620648920": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620643052": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620624978": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620623077": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620622724": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620621004": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620618562": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620608395": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620602330": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620596141": {
+   "category": "other",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620591913": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620586263": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620579502": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620560976": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620556725": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620554086": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620553678": {
+   "category": "bug",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620542484": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620540317": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620532736": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620523092": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620501109": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": true
+  },
+  "14620499273": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620491933": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620491245": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620470716": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620454863": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620454260": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620444910": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620440672": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620436659": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620436191": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620434344": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620430787": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620430365": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620423325": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620423287": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620423111": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620421322": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620420622": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620416120": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620414132": {
+   "category": "other",
+   "sentiment": "neutral",
+   "has_device_info": false
+  },
+  "14620410554": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620395365": {
+   "category": "billing",
+   "sentiment": "neutral",
+   "has_device_info": false
+  },
+  "14620379329": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620375347": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620371562": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620365143": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620358397": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620317933": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620314307": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620312000": {
+   "category": "other",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620305309": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620305238": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620303382": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620301750": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620288005": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620284189": {
+   "category": "other",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620271414": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620259571": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620259109": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620246503": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620243117": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620228837": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620217052": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620194610": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620193974": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620192533": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620191605": {
+   "category": "request",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620174415": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620166831": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620160793": {
+   "category": "request",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620149531": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620140212": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620139384": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620139302": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620134174": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620130157": {
+   "category": "billing",
+   "sentiment": "mixed",
+   "has_device_info": false
+  },
+  "14620119088": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620111962": {
+   "category": "billing",
+   "sentiment": "negative",
+   "has_device_info": false
+  },
+  "14620104322": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620099695": {
+   "category": "praise",
+   "sentiment": "positive",
+   "has_device_info": false
+  },
+  "14620082301": {
+   "category": "bug",
+   "sentiment": "negative",
+   "has_device_info": false
+  }
+ },
+ "clusters": {
+  "14622068328": "ai_content",
+  "14622055785": "praise",
+  "14621978566": "praise",
+  "14621802707": "praise",
+  "14621799897": "praise",
+  "14621759821": "praise",
+  "14621748413": "praise",
+  "14621683050": "praise",
+  "14621659207": "praise",
+  "14621637088": "praise",
+  "14621608229": "praise",
+  "14621592777": "praise",
+  "14621545637": "praise",
+  "14621542558": "praise",
+  "14621459065": "praise",
+  "14621420636": "praise",
+  "14621412193": "praise",
+  "14621404086": "praise",
+  "14621398723": "praise",
+  "14621356665": "praise",
+  "14621303812": "praise",
+  "14621297887": "praise",
+  "14621285899": "praise",
+  "14621269606": "praise",
+  "14621267303": "praise",
+  "14621260243": "praise",
+  "14621242067": "praise",
+  "14621241999": "praise",
+  "14621186743": "praise",
+  "14621163931": "praise",
+  "14621157251": "praise",
+  "14621146664": "praise",
+  "14621145984": "praise",
+  "14621119300": "praise",
+  "14621098020": "praise",
+  "14621927782": "ads",
+  "14621775147": "ads",
+  "14621549465": "ads",
+  "14621408557": "ads",
+  "14621321630": "ads",
+  "14621312853": "ads",
+  "14621296462": "ads",
+  "14621228290": "ads",
+  "14621920368": "not_working",
+  "14621915395": "not_working",
+  "14621484107": "not_working",
+  "14621159222": "not_working",
+  "14621113547": "not_working",
+  "14621366147": "free_tier",
+  "14621245386": "free_tier",
+  "14621245074": "free_tier",
+  "14621223513": "free_tier",
+  "14621222789": "free_tier",
+  "14621520105": "misc",
+  "14621302986": "misc",
+  "14621289990": "misc",
+  "14621191788": "misc",
+  "14621178004": "misc",
+  "14621155714": "misc",
+  "14621151333": "misc"
+ }
+}

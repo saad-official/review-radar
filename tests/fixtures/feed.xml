@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns:im="http://itunes.apple.com/rss" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://itunes.apple.com/us/rss/customerreviews/page=1/id=1/sortby=mostrecent/xml</id>
+  <title>iTunes Store: Customer Reviews</title>
+  <updated>2026-10-04T11:39:05-07:00</updated>
+  <entry>
+    <id>2001</id>
+    <title>Login loop</title>
+    <content type="text">Synthetic: I get logged out after every update &amp; cannot log back in.</content>
+    <im:contentType term="Application" label="Application"/>
+    <im:voteSum>0</im:voteSum>
+    <im:voteCount>0</im:voteCount>
+    <im:rating>1</im:rating>
+    <updated>2026-10-03T02:15:30-07:00</updated>
+    <im:version>9.1.88</im:version>
+    <author><name>xmltester</name><uri>https://itunes.apple.com/us/reviews/id1</uri></author>
+    <content type="html">&lt;b&gt;html copy that must be ignored&lt;/b&gt;</content>
+  </entry>
+  <entry>
+    <id>2002</id>
+    <title>Fine</title>
+    <content type="text">Synthetic: works fine for me.</content>
+    <im:rating>4</im:rating>
+    <updated>2026-10-02T22:00:00-07:00</updated>
+    <im:version>9.1.87</im:version>
+    <author><name>other</name></author>
+  </entry>
+</feed>

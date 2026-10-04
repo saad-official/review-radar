@@ -1,0 +1,84 @@
+# Model routing: which model does which job, and what happens when it cannot.
+# Same shape as Changelog Forge (its decision 0001). Prices: llm_kit.pricing (paid rates).
+# Changing a model here is a behaviour change: re-run `uv run evals --live` and compare.
+
+version = "2026-10-04"
+
+[budget]
+# Hard ceiling per run (extraction + theme naming + the propose loop + embeddings),
+# enforced by llm-kit's Ledger BEFORE each call.
+max_usd_per_run = 0.10
+
+[retry]
+# A serverless request has ~250 s; a stuck primary should hand over to the fallback
+# rather than spend 90 s backing off.
+max_attempts = 3
+max_delay_s = 20.0
+deadline_s = 45.0
+
+[agent]
+max_iterations = 24
+deadline_s = 200.0
+min_window_s = 60.0
+
+[cluster]
+link_threshold = 0.80
+merge_threshold = 0.78
+min_cluster_size = 2
+within_kind = true
+
+[prompts]
+extract = "v1"
+theme = "v1"
+agent = "v1"
+
+# ---------------------------------------------------------------------------- extract
+# Many small structured calls (10 reviews each): classification and short quotes.
+[tiers.extract]
+provider = "groq"
+model = "openai/gpt-oss-20b"
+max_tokens = 8192          # reasoning model: hidden thinking counts against this
+temperature = 0.1
+reasoning_effort = "low"
+tpm_limit = 8000           # Groq free tier, tokens per minute per model
+schema_retries = 1
+
+[[tiers.extract.fallbacks]]
+provider = "gemini"
+model = "gemini-3.5-flash-lite"
+max_tokens = 8192
+temperature = 0.1
+
+# ---------------------------------------------------------------------------- theme
+# One call per run names every new cluster (title + summary quoting member reviews).
+[tiers.theme]
+provider = "groq"
+model = "openai/gpt-oss-20b"
+max_tokens = 6144
+temperature = 0.2
+reasoning_effort = "low"
+tpm_limit = 8000
+schema_retries = 1
+
+[[tiers.theme.fallbacks]]
+provider = "gemini"
+model = "gemini-3.5-flash-lite"
+max_tokens = 6144
+temperature = 0.2
+
+# ---------------------------------------------------------------------------- agent
+# The propose loop: judgement (which themes deserve issues, which reviews deserve replies)
+# and phrasing. Worth the better model; bounded by max_iterations, deadline and budget.
+[tiers.agent]
+provider = "groq"
+model = "openai/gpt-oss-120b"
+max_tokens = 4096
+temperature = 0.2
+reasoning_effort = "low"
+tpm_limit = 8000
+
+[[tiers.agent.fallbacks]]
+provider = "gemini"
+model = "gemini-3.5-flash-lite"
+max_tokens = 4096
+temperature = 0.2
