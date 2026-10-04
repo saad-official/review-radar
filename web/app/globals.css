@@ -1,0 +1,309 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Review Radar design tokens. Ops-room calm: charcoal on cool grey-white.
+  Three colours carry meaning and nothing else uses them:
+    radar green  = approved / executed (a human said yes, the action ran)
+    amber        = proposed (waiting for a human)
+    rose         = rejected, failed, and high severity
+  Headings in Space Grotesk, body in Inter, ids / counts / the trajectory in DM Mono.
+  The flight-recorder panel ("scope") stays dark in both themes.
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-charcoal: var(--charcoal);
+  --color-slate: var(--slate);
+  --color-rule: var(--rule);
+
+  --color-radar: var(--radar);
+  --color-radar-ink: var(--radar-ink);
+  --color-radar-wash: var(--radar-wash);
+  --color-amber: var(--amber);
+  --color-amber-ink: var(--amber-ink);
+  --color-amber-wash: var(--amber-wash);
+  --color-rose: var(--rose);
+  --color-rose-ink: var(--rose-ink);
+  --color-rose-wash: var(--rose-wash);
+
+  --color-scope: var(--scope);
+  --color-scope-raised: var(--scope-raised);
+  --color-scope-fg: var(--scope-fg);
+  --color-scope-dim: var(--scope-dim);
+  --color-scope-rule: var(--scope-rule);
+  --color-scope-green: var(--scope-green);
+  --color-scope-amber: var(--scope-amber);
+  --color-scope-rose: var(--scope-rose);
+  --color-scope-blue: var(--scope-blue);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --shadow-panel: 0 1px 0 var(--rule), 0 16px 32px -26px oklch(0.2 0.02 250 / 45%);
+}
+
+:root {
+  /* Charcoal on cool grey-white. */
+  --paper: oklch(0.972 0.004 250);
+  --sheet: oklch(0.995 0.002 250);
+  --charcoal: oklch(0.255 0.012 255);
+  /* Secondary text: about 6.3:1 on paper. */
+  --slate: oklch(0.475 0.016 255);
+  --rule: oklch(0.885 0.006 250);
+
+  /* Semantic. *-ink is for text and chip labels (>= 4.5:1 on paper and on its wash). */
+  --radar: oklch(0.66 0.15 158);
+  --radar-ink: oklch(0.45 0.11 158);
+  --radar-wash: oklch(0.95 0.035 160);
+  --amber: oklch(0.79 0.15 75);
+  --amber-ink: oklch(0.48 0.1 62);
+  --amber-wash: oklch(0.955 0.045 85);
+  --rose: oklch(0.63 0.19 12);
+  --rose-ink: oklch(0.5 0.17 12);
+  --rose-wash: oklch(0.955 0.025 10);
+
+  /* Flight recorder: dark in both themes. */
+  --scope: oklch(0.215 0.014 250);
+  --scope-raised: oklch(0.255 0.016 250);
+  --scope-fg: oklch(0.93 0.006 250);
+  --scope-dim: oklch(0.72 0.016 250);
+  --scope-rule: oklch(1 0 0 / 9%);
+  --scope-green: oklch(0.82 0.14 158);
+  --scope-amber: oklch(0.85 0.13 80);
+  --scope-rose: oklch(0.78 0.14 12);
+  --scope-blue: oklch(0.8 0.09 235);
+
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  --card: var(--sheet);
+  --card-foreground: var(--charcoal);
+  --popover: var(--sheet);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--charcoal);
+  --primary-foreground: var(--sheet);
+  --secondary: oklch(0.935 0.006 250);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.945 0.005 250);
+  --muted-foreground: var(--slate);
+  --accent: oklch(0.935 0.006 250);
+  --accent-foreground: var(--charcoal);
+  --destructive: var(--rose-ink);
+  --border: var(--rule);
+  --input: oklch(0.8 0.01 250);
+  --ring: var(--charcoal);
+  --chart-1: var(--radar);
+  --chart-2: var(--amber);
+  --chart-3: var(--rose);
+  --chart-4: var(--slate);
+  --chart-5: var(--charcoal);
+  --radius: 0.45rem;
+  --sidebar: var(--sheet);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--charcoal);
+  --sidebar-primary-foreground: var(--sheet);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--charcoal);
+}
+
+.dark {
+  --paper: oklch(0.175 0.01 250);
+  --sheet: oklch(0.21 0.011 250);
+  --charcoal: oklch(0.93 0.006 250);
+  --slate: oklch(0.74 0.014 250);
+  --rule: oklch(1 0 0 / 11%);
+
+  --radar: oklch(0.74 0.14 158);
+  --radar-ink: oklch(0.83 0.13 158);
+  --radar-wash: oklch(0.3 0.05 160);
+  --amber: oklch(0.8 0.14 78);
+  --amber-ink: oklch(0.86 0.12 80);
+  --amber-wash: oklch(0.31 0.05 75);
+  --rose: oklch(0.7 0.16 12);
+  --rose-ink: oklch(0.81 0.11 12);
+  --rose-wash: oklch(0.3 0.06 12);
+
+  --scope: oklch(0.14 0.01 250);
+  --scope-raised: oklch(0.19 0.012 250);
+  --scope-rule: oklch(1 0 0 / 8%);
+
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  --card: var(--sheet);
+  --card-foreground: var(--charcoal);
+  --popover: var(--sheet);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--charcoal);
+  --primary-foreground: oklch(0.2 0.01 250);
+  --secondary: oklch(0.255 0.011 250);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.24 0.011 250);
+  --muted-foreground: var(--slate);
+  --accent: oklch(0.265 0.011 250);
+  --accent-foreground: var(--charcoal);
+  --destructive: var(--rose-ink);
+  --border: var(--rule);
+  --input: oklch(1 0 0 / 22%);
+  --ring: var(--charcoal);
+  --sidebar: var(--sheet);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--charcoal);
+  --sidebar-primary-foreground: oklch(0.2 0.01 250);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--charcoal);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--radar) 28%, transparent);
+  }
+  /* One solid, high-contrast focus outline for links, summaries and native inputs. */
+  a:focus-visible,
+  summary:focus-visible,
+  input[type="checkbox"]:focus-visible,
+  input[type="file"]:focus-visible,
+  [tabindex="0"]:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Numbers that line up: counts, tokens, dollars. */
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Mono figures: ids, counts, the trajectory. */
+@utility figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Section kicker, read like a channel label on an ops console: CH 02 / HOW IT WORKS */
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+/* Faint range rings behind the hero, like a radar scope. Static: no sweep animation. */
+@utility rings {
+  background-image:
+    radial-gradient(circle at 100% 0%, transparent 0 159px, color-mix(in oklch, var(--rule) 80%, transparent) 160px 161px, transparent 162px),
+    radial-gradient(circle at 100% 0%, transparent 0 319px, color-mix(in oklch, var(--rule) 70%, transparent) 320px 321px, transparent 322px),
+    radial-gradient(circle at 100% 0%, transparent 0 499px, color-mix(in oklch, var(--rule) 60%, transparent) 500px 501px, transparent 502px),
+    radial-gradient(circle at 100% 0%, transparent 0 699px, color-mix(in oklch, var(--rule) 50%, transparent) 700px 701px, transparent 702px);
+}
+
+/* Block cursor for live logs; blinks only when motion is allowed. */
+@utility caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  vertical-align: text-bottom;
+  background: currentColor;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: caret-blink 1.1s steps(1, end) infinite;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
