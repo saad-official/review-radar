@@ -76,7 +76,7 @@ set_env . GITHUB_TOKEN "$GH_TOKEN_VAL" --sensitive
 set_env . QSTASH_TOKEN "$QSTASH" --sensitive
 set_env . LANGFUSE_PUBLIC_KEY "$LF_PUBLIC"
 set_env . LANGFUSE_SECRET_KEY "$LF_SECRET" --sensitive
-set_env . WEB_ORIGIN "$WEB_URL,http://localhost:3600,http://localhost:3000"
+set_env . WEB_ORIGIN "$WEB_URL,http://localhost:3800,http://localhost:3600,http://localhost:3000"
 set_env . PUBLIC_API_URL "$API_URL"
 
 echo "Pushing web env (project review-radar, root dir web/)..."
@@ -98,13 +98,13 @@ GITHUB_TOKEN=$GH_TOKEN_VAL
 QSTASH_TOKEN=$QSTASH
 LANGFUSE_PUBLIC_KEY=$LF_PUBLIC
 LANGFUSE_SECRET_KEY=$LF_SECRET
-WEB_ORIGIN=http://localhost:3600,http://localhost:3000
+WEB_ORIGIN=http://localhost:3800,http://localhost:3600,http://localhost:3000
 PUBLIC_API_URL=http://localhost:7860
 PORT=7860
 EOF
 cat > web/.env.local <<EOF
 NEXT_PUBLIC_API_URL=http://localhost:7860
-NEXT_PUBLIC_APP_URL=http://localhost:3600
+NEXT_PUBLIC_APP_URL=http://localhost:3800
 EOF
 
 echo "Running database migrations (direct URL)..."
