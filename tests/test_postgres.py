@@ -95,7 +95,7 @@ def test_dimension_migration_nulls_vectors_keeps_indexes_and_runs_recover(settin
     dims_sql = """SELECT c.relname, a.atttypmod FROM pg_attribute a
                   JOIN pg_class c ON c.oid = a.attrelid
                   JOIN pg_namespace n ON n.oid = c.relnamespace
-                  WHERE n.nspname = 'review_radar' AND a.attname = 'embedding'"""
+                  WHERE n.nspname = 'review_radar' AND c.relkind = 'r' AND a.attname = 'embedding'"""
     with psycopg.connect(DSN, autocommit=True) as conn:
         assert dict(conn.execute(dims_sql).fetchall()) == {"reviews": 768, "themes": 768}
         conn.execute(
