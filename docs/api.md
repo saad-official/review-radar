@@ -1,7 +1,9 @@
 # API
 
 Base URL: https://review-radar-api.vercel.app (local: http://localhost:7860). OpenAPI:
-`/api/docs`, `/api/openapi.json`. All bodies are JSON unless noted.
+`/api/docs`, `/api/openapi.json`. All bodies are JSON unless noted, served as
+`application/json; charset=utf-8` (the charset is explicit so clients that guess, such as
+Windows PowerShell 5.1, do not decode "’" as "â€™").
 
 **Auth.** Write routes need `Authorization: Bearer <OPERATOR_TOKEN>` (401 when wrong, 503
 when the server has none configured). Read routes are public for apps with `public: true`
@@ -52,7 +54,9 @@ contract), optional `author`, `title`, `app_version`, `country` (ignored). The p
 lenient: only a text column is strictly required; aliases accept the Play Console export
 (`Review Text`, `Star Rating`, `App Version Name`, `Review Submit Date and Time`); a
 missing id is derived from the row content. Invalid rows are reported and skipped;
-re-importing is idempotent.
+re-importing is idempotent. The file is read as UTF-8 (a BOM is fine); a file that is not
+valid UTF-8 at all is read as Windows-1252 (Excel's legacy "CSV" save), never shredded
+into U+FFFD.
 
 ## Runs
 
@@ -159,16 +163,21 @@ Proposal:
 {
   "id": "uuid", "app_id": "uuid", "run_id": "uuid", "kind": "reply|issue",
   "status": "proposed|approved|rejected|executed|failed",
+  "review_id": "uuid (reply) | null", "theme_id": "uuid | null",
   "draft": {
     "text": "reply text (reply only)", "review_alias": "R3",
     "title": "...", "summary": "...", "suspected_area": "playback", "severity": 4,
     "evidence": [{"review_id": "uuid", "store_review_id": "...", "quote": "...", "date": "...", "rating": 1, "app_version": "9.1.88"}],
     "affected_versions": ["9.1.88"], "affected_devices": ["iPhone 15"], "devices": ["iPhone 15"],
     "theme_id": "uuid", "theme_title": "...", "review_count": 8, "labels": ["review-radar"],
-    "body": "rendered GitHub markdown (issue only)", "edited": true
+    "body": "issue: rendered GitHub markdown; reply: same as text", "edited": true
   },
   "reasoning": "why the agent proposed it",
-  "guardrails": {"passed": true, "violations": [{"rule": "...", "detail": "..."}], "checks": ["length", "urls", "..."]},
+  "guardrails": {
+    "passed": true,
+    "violations": [{"rule": "...", "detail": "..."}],
+    "checks": [{"name": "length", "ok": true, "note": null}, {"name": "urls", "ok": true, "note": null}]
+  },
   "decided_by": "operator", "decided_at": "...", "decision_reason": "duplicate of #42", "reason": "duplicate of #42",
   "result": {"url": "https://github.com/.../issues/7", "number": 7, "repo": "..."} | {"error": "github_forbidden", "message": "..."} | null,
   "review": {"id": "uuid", "store_review_id": "...", "rating": 1, "title": "...", "body": "...", "app_version": "...", "date": "..."} | null,
@@ -176,6 +185,21 @@ Proposal:
   "created_at": "...", "updated_at": "..."
 }
 ```
+
+The view adds three things to what is stored (the stored row is unchanged, so every field
+above keeps its meaning):
+
+- **Reply `draft.body`** equals `draft.text`. `text` stays; the web UI reads `body` for both
+  kinds. Approve edits accept either key.
+- **Reply `draft.evidence`** is the answered review as one evidence item, same shape as an
+  issue's: `review_id` (internal id, as in `review.id`), `store_review_id`, `quote` (the
+  review body, whitespace-collapsed, cut at about 240 characters with "…"), `date`,
+  `rating`, `app_version`. Issue evidence is the agent's verified quotes, unchanged.
+- **`guardrails.checks`** are objects `{name, ok, note}`: one per rule that ran; `ok` is false
+  when a violation names that rule and `note` is its `detail` (several joined with "; "). A
+  violation for a rule not in the list is appended as a failed check. `passed` and
+  `violations` are as stored. Only passing drafts are stored, so in practice every check is
+  `ok`; failures show up in the 422 `guardrail_failed` message of an edited approve.
 
 ## Cron and health
 

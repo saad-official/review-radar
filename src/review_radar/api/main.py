@@ -93,6 +93,14 @@ def _error(status: int, code: str, message: str, **extra: Any) -> HTTPException:
     )
 
 
+class UTF8JSONResponse(JSONResponse):
+    """JSON is UTF-8 by spec, but clients that ignore the spec (Windows PowerShell 5.1's
+    Invoke-RestMethod, some proxies and CSV tools) fall back to Latin-1/cp1252 when the
+    Content-Type carries no charset and show "I’m" as "Iâ€™m". Saying it costs nothing."""
+
+    media_type = "application/json; charset=utf-8"
+
+
 def _bearer_matches(authorization: str | None, secret: str) -> bool:
     if not secret or not authorization:
         return False
@@ -113,6 +121,7 @@ def create_app(engine: Engine | None = None) -> FastAPI:
         docs_url="/api/docs",
         redoc_url=None,
         openapi_url="/api/openapi.json",
+        default_response_class=UTF8JSONResponse,
     )
     app.state.engine = engine
     app.state.bucket = TokenBucket(settings.runs_per_hour_per_ip, 3600.0)
@@ -332,7 +341,7 @@ def create_app(engine: Engine | None = None) -> FastAPI:
         else:
             raw = await request.body()
         try:
-            parsed = parse_csv(raw.decode("utf-8", errors="replace"))
+            parsed = parse_csv(raw)
         except IngestError as exc:
             raise _error(exc.status, exc.code, exc.message) from exc
         new_ids = await run_in_threadpool(import_reviews, engine, record, parsed.reviews)
@@ -493,7 +502,7 @@ def create_app(engine: Engine | None = None) -> FastAPI:
         result = ProcessResult(
             id=run_id, status=outcome.status, resumable=outcome.resumable, message=outcome.message
         )
-        return JSONResponse(result.model_dump(), status_code=202 if outcome.resumable else 200)
+        return UTF8JSONResponse(result.model_dump(), status_code=202 if outcome.resumable else 200)
 
     @app.get("/api/runs/{run_id}", response_model=RunView, tags=["runs"], responses=ERRORS)
     def get_run(run_id: str, engine: EngineDep, authorization: AuthHeader = None) -> RunView:

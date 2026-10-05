@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-04T19:45:29+00:00",
+ "generated_at": "2026-10-05T07:07:08+00:00",
  "labelled": 200,
  "label_distribution": {
   "request": 11,
@@ -48,61 +48,26 @@
    "sentiment_lenient": 0.985
   },
   "recorded_run": {
-   "n": 30,
-   "category": 0.9333,
-   "sentiment": 0.9667,
-   "has_device_info": 1.0,
-   "confusion": {
-    "billing": {
-     "billing": 6
-    },
-    "bug": {
-     "bug": 3
-    },
-    "other": {
-     "other": 1
-    },
-    "praise": {
-     "praise": 17,
-     "other": 2
-    },
-    "request": {
-     "request": 1
-    }
-   },
-   "sentiment_lenient": 1.0,
+   "n": 0,
+   "category": null,
+   "sentiment": null,
+   "has_device_info": null,
+   "confusion": {},
+   "sentiment_lenient": null,
    "models": [
     "gemini-3.5-flash-lite",
-    "gemini-embedding-001"
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "voyage-4-lite"
    ]
   },
   "baseline_on_same_reviews": {
-   "n": 30,
-   "category": 0.7,
-   "sentiment": 0.8333,
-   "has_device_info": 1.0,
-   "confusion": {
-    "billing": {
-     "billing": 5,
-     "bug": 1
-    },
-    "bug": {
-     "other": 1,
-     "bug": 2
-    },
-    "other": {
-     "other": 1
-    },
-    "praise": {
-     "praise": 12,
-     "other": 6,
-     "request": 1
-    },
-    "request": {
-     "request": 1
-    }
-   },
-   "sentiment_lenient": 0.9333
+   "n": 0,
+   "category": null,
+   "sentiment": null,
+   "has_device_info": null,
+   "confusion": {},
+   "sentiment_lenient": null
   }
  },
  "clustering": {
@@ -298,7 +263,41 @@
    }
   ],
   "model": "hash-768 (offline lexical stand-in)",
-  "stand_in": true
+  "stand_in": true,
+  "recorded_run": {
+   "clusters": 0,
+   "purity": null,
+   "completeness": 0.0,
+   "completeness_by_label": {
+    "praise": 0.0,
+    "ads": 0.0,
+    "not_working": 0.0,
+    "free_tier": 0.0
+   },
+   "coverage": 0.0,
+   "themes": [
+    {
+     "title": "Praise for the music application",
+     "kind": "praise",
+     "size": 3
+    },
+    {
+     "title": "Request for fewer advertisements",
+     "kind": "billing",
+     "size": 2
+    },
+    {
+     "title": "Excessive advertisements between tracks",
+     "kind": "billing",
+     "size": 2
+    },
+    {
+     "title": "Positive app experience",
+     "kind": "praise",
+     "size": 2
+    }
+   ]
+  }
  },
  "trajectory": {
   "rules": {
@@ -309,10 +308,10 @@
    "step_count_within_cap": true
   },
   "passed": true,
-  "model_steps": 0,
-  "tool_calls": 5,
+  "model_steps": 8,
+  "tool_calls": 11,
   "cap": 24,
-  "usd": 0.0081173,
+  "usd": 0.00648778,
   "max_usd": 0.1,
   "violations": {
    "unknown_tools": [],
@@ -322,49 +321,79 @@
   }
  },
  "guardrails": {
-  "attempts": 0,
-  "first_attempt_pass_rate": null,
-  "stored_replies": 0,
-  "stored_pass_rate": null,
-  "mean_length": null
+  "attempts": 4,
+  "first_attempt_pass_rate": 1.0,
+  "stored_replies": 4,
+  "stored_pass_rate": 1.0,
+  "mean_length": 183.8
  },
  "issue_template": {
-  "issues": 0,
-  "completeness": null,
-  "mean_evidence_quotes": null
+  "issues": 1,
+  "completeness": 1.0,
+  "mean_evidence_quotes": 2.0
  },
  "cost": {
   "reviews": 30,
-  "calls": 4,
-  "tokens": 5945,
-  "status": "failed",
-  "error": "LLMTransientError: 429 from embeddings: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex",
-  "usd": 0.0081173,
-  "usd_per_50_reviews": 0.013529,
-  "usd_per_month_daily_50": 0.4059,
+  "calls": 14,
+  "tokens": 30004,
+  "status": "done",
+  "error": null,
+  "usd": 0.00648778,
+  "usd_per_50_reviews": 0.010813,
+  "usd_per_month_daily_50": 0.3244,
   "by_model": [
    {
-    "usd": 0.0081173,
-    "calls": 3,
-    "model": "gemini-3.5-flash-lite",
-    "stage": "extract",
-    "provider": "gemini",
-    "prompt_tokens": 3066,
+    "usd": 1.898e-05,
+    "calls": 1,
+    "model": "voyage-4-lite",
+    "stage": "embed",
+    "provider": "voyage",
+    "prompt_tokens": 949,
     "reasoning_tokens": 0,
-    "completion_tokens": 2879
+    "completion_tokens": 0
    },
    {
     "usd": 0.0,
-    "calls": 1,
-    "model": "gemini-embedding-001",
-    "stage": "embed",
-    "provider": "gemini",
+    "calls": 2,
+    "model": "openai/gpt-oss-20b",
+    "stage": "theme",
+    "provider": "groq",
     "prompt_tokens": 0,
+    "reasoning_tokens": 0,
+    "completion_tokens": 0
+   },
+   {
+    "usd": 0.0016021,
+    "calls": 1,
+    "model": "gemini-3.5-flash-lite",
+    "stage": "theme",
+    "provider": "gemini",
+    "prompt_tokens": 607,
+    "reasoning_tokens": 0,
+    "completion_tokens": 568
+   },
+   {
+    "usd": 0.0048666,
+    "calls": 8,
+    "model": "openai/gpt-oss-120b",
+    "stage": "agent",
+    "provider": "groq",
+    "prompt_tokens": 26352,
+    "reasoning_tokens": 828,
+    "completion_tokens": 1523
+   },
+   {
+    "usd": 1e-07,
+    "calls": 2,
+    "model": "voyage-4-lite",
+    "stage": "memory",
+    "provider": "voyage",
+    "prompt_tokens": 5,
     "reasoning_tokens": 0,
     "completion_tokens": 0
    }
   ],
-  "seconds": 53.1
+  "seconds": 486.5
  },
  "scorer_self_test": {
   "all_rules_fail_on_bad_trajectory": true,

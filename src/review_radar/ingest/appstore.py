@@ -19,6 +19,7 @@ all already stored, which is "new reviews since last run" without trusting dates
 
 from __future__ import annotations
 
+import json
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from typing import Any
@@ -99,13 +100,17 @@ def parse_json_page(data: dict[str, Any]) -> list[ReviewIn]:
     return reviews
 
 
-def parse_xml_page(text: str) -> list[ReviewIn]:
+def parse_xml_page(data: str | bytes) -> list[ReviewIn]:
+    """Pass the response *bytes*: the XML parser then decodes them by the document's own
+    declaration (UTF-8 by default), not by an HTTP charset header that may be absent or
+    wrong. A str is accepted for tests and is encoded back to UTF-8."""
+    raw = data if isinstance(data, bytes) else data.encode("utf-8")
     # The Atom feed never declares a DTD. Refusing any document that does closes entity
     # expansion (billion laughs) and external entities without a defusedxml dependency.
-    if "<!DOCTYPE" in text or "<!ENTITY" in text:
+    if b"<!DOCTYPE" in raw or b"<!ENTITY" in raw:
         raise IngestError("bad_feed", "the feed declared a DTD; refusing to parse it")
     try:
-        root = ET.fromstring(text.strip().encode("utf-8"))
+        root = ET.fromstring(raw.strip())
     except ET.ParseError as exc:
         raise IngestError("bad_feed", f"the App Store feed was not valid XML: {exc}") from exc
     reviews = []
@@ -174,13 +179,15 @@ class AppStoreSource:
                     stopped = f"http_{response.status_code}"
                     break
                 pages += 1
+                # Both formats are parsed from the raw bytes as UTF-8, never from
+                # `response.text`, whose decoding follows the Content-Type charset.
                 if self.fmt == "json":
                     try:
-                        batch = parse_json_page(response.json())
+                        batch = parse_json_page(json.loads(response.content))
                     except ValueError as exc:
                         raise IngestError("bad_feed", "the feed was not valid JSON") from exc
                 else:
-                    batch = parse_xml_page(response.text)
+                    batch = parse_xml_page(response.content)
                 if not batch:
                     stopped = "empty"
                     break
@@ -205,7 +212,8 @@ def lookup_app_name(
         response = http.get(
             "https://itunes.apple.com/lookup", params={"id": store_id, "country": country}
         )
-        results = response.json().get("results") or [] if response.status_code == 200 else []
+        payload = json.loads(response.content) if response.status_code == 200 else {}
+        results = payload.get("results") or []
         return str(results[0].get("trackName")) if results else None
     except (httpx.HTTPError, ValueError):
         return None

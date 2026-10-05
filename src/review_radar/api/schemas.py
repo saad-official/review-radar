@@ -236,18 +236,84 @@ class ThemeBrief(BaseModel):
     review_count: int
 
 
+REPLY_EVIDENCE_CHARS = 240
+
+
+def _excerpt(text: str, limit: int = REPLY_EVIDENCE_CHARS) -> str:
+    text = " ".join(text.split())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    space = cut.rfind(" ")
+    return (cut[:space] if space > limit * 0.6 else cut).rstrip(" ,.;:") + "…"
+
+
+def reply_evidence(review: ReviewBrief) -> list[dict[str, Any]]:
+    """A reply's evidence is the review it answers: same shape as an issue's evidence item."""
+    quote = _excerpt(review.body or review.title or "")
+    if not quote:
+        return []
+    return [
+        {
+            "review_id": review.id,
+            "store_review_id": review.store_review_id,
+            "quote": quote,
+            "date": review.date.isoformat() if review.date else None,
+            "rating": review.rating,
+            "app_version": review.app_version,
+        }
+    ]
+
+
+def guardrail_checks(guardrails: dict[str, Any]) -> list[dict[str, Any]]:
+    """Stored checks are rule names (["length", "urls", ...]) plus a separate violations list;
+    the view gives one `{name, ok, note}` object per rule. A violation whose rule is not in
+    the stored list still shows up, as a failed check. Already-shaped objects pass through."""
+    notes: dict[str, list[str]] = {}
+    for violation in guardrails.get("violations") or []:
+        if isinstance(violation, dict) and violation.get("rule"):
+            notes.setdefault(str(violation["rule"]), []).append(str(violation.get("detail") or ""))
+        elif isinstance(violation, str):
+            notes.setdefault(violation, [])
+    checks: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in guardrails.get("checks") or []:
+        if isinstance(item, dict) and "name" in item:
+            name = str(item["name"])
+            shaped = {"name": name, "ok": bool(item.get("ok")), "note": item.get("note")}
+        else:
+            name = str(item)
+            note = "; ".join(n for n in notes.get(name, []) if n) or None
+            shaped = {"name": name, "ok": name not in notes, "note": note}
+        if name not in seen:
+            seen.add(name)
+            checks.append(shaped)
+    for name, details in notes.items():
+        if name not in seen:
+            seen.add(name)
+            note = "; ".join(d for d in details if d) or None
+            checks.append({"name": name, "ok": False, "note": note})
+    return checks
+
+
 class ProposalView(BaseModel):
     id: str
     app_id: str
     run_id: str | None
     kind: ProposalKind
     status: ProposalStatus
+    review_id: str | None = Field(default=None, description="reply: the review it answers")
+    theme_id: str | None = Field(default=None, description="the proposal's theme, if any")
     draft: dict[str, Any] = Field(
-        description="reply: {text}; issue: {title, summary, suspected_area, severity, evidence[], "
-        "affected_versions[], affected_devices[], body (rendered markdown)}"
+        description="reply: {text, body (= text), review_alias, evidence[1]}; issue: {title, "
+        "summary, suspected_area, severity, evidence[], affected_versions[], "
+        "affected_devices[], devices[], body (rendered markdown)}. Evidence items: "
+        "{review_id, store_review_id, quote, date, rating, app_version}"
     )
     reasoning: str
-    guardrails: dict[str, Any] = Field(description="{passed, violations[], checks[]}")
+    guardrails: dict[str, Any] = Field(
+        description="{passed, violations: [{rule, detail}], checks: [{name, ok, note}]}"
+    )
     decided_by: str | None
     decided_at: datetime | None
     decision_reason: str | None
@@ -259,6 +325,25 @@ class ProposalView(BaseModel):
     theme: ThemeBrief | None
     created_at: datetime
     updated_at: datetime
+
+    @model_validator(mode="after")
+    def _web_shape(self) -> ProposalView:
+        """Additive fields for the web UI (web/lib/api.ts): a reply's text also as `body`,
+        a reply's evidence from its review, guardrail checks as objects. Stored data is not
+        changed; every existing field keeps its value."""
+        draft = dict(self.draft)
+        if self.kind == "reply":
+            if "text" in draft:
+                draft["body"] = draft["text"]
+            if not draft.get("evidence") and self.review is not None:
+                draft["evidence"] = reply_evidence(self.review)
+        self.draft = draft
+        guardrails = dict(self.guardrails)
+        guardrails["checks"] = guardrail_checks(guardrails)
+        guardrails.setdefault("violations", [])
+        guardrails.setdefault("passed", all(c["ok"] for c in guardrails["checks"]))
+        self.guardrails = guardrails
+        return self
 
 
 class ApproveBody(BaseModel):

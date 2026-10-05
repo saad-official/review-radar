@@ -27,6 +27,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ValidationError
 
+from ..text import decode_upload
 from .base import IngestError, ReviewIn
 
 MAX_ROWS = 5000
@@ -78,9 +79,13 @@ def _parse_date(value: str) -> datetime | None:
     raise ValueError(f"unrecognised date {value[:40]!r} (use ISO 8601 or YYYY-MM-DD)")
 
 
-def parse_csv(text: str, *, source: str = "csv") -> CsvImport:
-    if len(text.encode("utf-8")) > MAX_BYTES:
+def parse_csv(data: str | bytes, *, source: str = "csv") -> CsvImport:
+    """Bytes (an upload) are decoded as UTF-8 here, never with the platform default; see
+    `review_radar.text.decode_upload`."""
+    size = len(data) if isinstance(data, bytes) else len(data.encode("utf-8"))
+    if size > MAX_BYTES:
         raise IngestError("too_large", f"CSV is larger than {MAX_BYTES // 1_000_000} MB")
+    text = decode_upload(data) if isinstance(data, bytes) else data
     reader = csv.reader(io.StringIO(text.lstrip("﻿")))
     try:
         header = next(reader)
