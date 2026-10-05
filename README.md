@@ -105,3 +105,9 @@ produces no issue from the injected review.
 - Record Gemini vectors for the clustering sweep (`uv run evals --record-embeddings`, one call).
 - Fix llm-kit's schema normaliser, which strips properties named `title` (worked around here).
 - Run the reply-tone LLM judge from the spec's eval plan.
+
+## Live
+
+- Web: https://getreviewradar.vercel.app · API: https://review-radar-api.vercel.app (`/api/docs`)
+- Demo app on 5 Oct 2026: Spotify (App Store, US) with 200 public reviews ingested and 30 analysed. The agent run that proposes replies and issues is waiting on model quota (Groq and Gemini daily free limits were spent on evals on 4 Oct) and on a GitHub token for `saad-official/review-radar-demo-issues`; write actions need the operator token.
+- Measured so far: extraction accuracy on 30 labelled reviews: category 93.3%, sentiment 96.7%, device-info 100% (keyword baseline 70% / 83%); extraction cost $0.0081 for 30 reviews on Gemini. Trajectory rules pass on the recorded partial run.
