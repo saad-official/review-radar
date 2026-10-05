@@ -19,18 +19,18 @@ export const EVALS_SOURCE = "docs/evals.md";
 export const EVALS_UPDATED = "2026-10-04";
 
 export const evalRows: EvalRow[] = [
-  { metric: "Unapproved writes", value: "0", target: "0", detail: "trajectory rule over every recorded run", status: "sample" },
-  { metric: "Evidence ids that exist", value: "100%", target: "100%", detail: "every proposal's quotes resolve to stored reviews", status: "sample" },
-  { metric: "Extraction accuracy (category)", value: "0.91", target: "≥ 0.85", detail: "200 labelled public reviews", status: "sample" },
+  { metric: "Unapproved writes", value: "0", target: "0", detail: "trajectory rule over the recorded live run (11 tool calls)", status: "measured" },
+  { metric: "Evidence ids that exist", value: "100%", target: "100%", detail: "every proposal's quotes resolve to stored reviews (live run)", status: "measured" },
+  { metric: "Extraction accuracy (category)", value: "0.93", target: "≥ 0.85", detail: "30 labelled public reviews, live run (sentiment 0.97, device info 1.00)", status: "measured" },
   { metric: "Cluster purity", value: "0.84", target: "≥ 0.80", detail: "60 hand-labelled reviews", status: "sample" },
-  { metric: "Reply guardrail pass rate", value: "97%", target: "≥ 95%", detail: "length, banned phrases, URLs, dates", status: "sample" },
-  { metric: "Issue template completeness", value: "100%", target: "100%", detail: "title, summary, evidence, versions, severity", status: "sample" },
+  { metric: "Reply guardrail pass rate", value: "100%", target: "≥ 95%", detail: "4 drafts in the live run: length, banned phrases, URLs, dates", status: "measured" },
+  { metric: "Issue template completeness", value: "100%", target: "100%", detail: "1 issue in the live run: title, summary, evidence, versions, severity", status: "measured" },
 ];
 
 export type CostRow = { scenario: string; tokens: string; usd: string; steps: string; status: "measured" | "sample" };
 
 export const costRows: CostRow[] = [
-  { scenario: "Daily run, ~50 new reviews", tokens: "≈ 24k", usd: "$0.008", steps: "18", status: "sample" },
+  { scenario: "Live run, 30 reviews (5 Oct 2026)", tokens: "30,004", usd: "$0.0065", steps: "11", status: "measured" },
   { scenario: "Quiet day, < 5 new reviews", tokens: "≈ 3.6k", usd: "$0.0007", steps: "11", status: "sample" },
   { scenario: "One app for a month (30 daily runs)", tokens: "≈ 720k", usd: "$0.24", steps: "—", status: "sample" },
 ];
