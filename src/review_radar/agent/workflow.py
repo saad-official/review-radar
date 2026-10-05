@@ -365,13 +365,43 @@ class RunWorkflow:
         finally:
             self.save_ledger()
         self.store.set_embeddings({r.id: v for r, v in zip(todo, vectors, strict=True)})
+        restored = self._restore_theme_centroids([r.id for r in todo])
+        result: dict[str, Any] = {
+            "embedded": len(vectors),
+            "dimensions": len(vectors[0]) if vectors else 0,
+        }
+        if restored:
+            result["centroids_restored"] = restored
         self.step(
             "embed",
             "tool_result",
             "embed_reviews",
-            result={"embedded": len(vectors), "dimensions": len(vectors[0]) if vectors else 0},
+            result=result,
             usage=usage_since(self.ledger, before),
         )
+
+    def _restore_theme_centroids(self, review_ids: list[str]) -> int:
+        """Give a centroid back to themes that lost it.
+
+        Changing the embedding model or dimension (migration 0002) nulls every stored
+        vector: reviews and theme centroids alike. Reviews heal on their own (an analysed
+        review with no embedding stays in the next run's working set), but a theme with no
+        centroid is invisible to `nearest_themes`, so no review would ever link to it again
+        and the same issue would come back as a duplicate theme. Its members are already
+        linked (cluster skips them), so the centroid is rebuilt here, from the members that
+        now have vectors, whenever one of them is re-embedded."""
+        theme_ids = {t for ids in self.store.review_theme_ids(review_ids).values() for t in ids}
+        restored = 0
+        for theme_id in sorted(theme_ids):
+            theme = self.store.get_theme(theme_id)
+            if theme is None or theme.embedding is not None:
+                continue
+            members = self.store.get_reviews(self.store.theme_review_ids(theme_id))
+            vectors = [r.embedding for r in members if r.embedding is not None]
+            if vectors:
+                self.store.update_theme(theme_id, embedding=centroid(vectors))
+                restored += 1
+        return restored
 
     # ------------------------------------------------------------------ cluster
 

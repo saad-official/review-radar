@@ -4,7 +4,11 @@ Plain SQL files and a short runner instead of Alembic: the schema is small, the 
 readable on their own, and there is no ORM whose models need to stay in sync. Use the
 *direct* (unpooled) Neon URL: DDL through PgBouncer's transaction mode is fragile.
 
-    DATABASE_URL=<direct url> uv run migrate
+One placeholder, `{{EMBEDDING_DIMENSIONS}}`, is filled from EMBEDDING_DIMENSIONS (default
+768) because the vector columns' dimension is a deploy-time choice that must match the
+embedder (docs/decisions/0005-voyage-embeddings.md). Set it before migrating.
+
+    DATABASE_URL=<direct url> EMBEDDING_DIMENSIONS=1024 uv run migrate
 """
 
 from __future__ import annotations
@@ -26,7 +30,11 @@ def migration_files() -> list[tuple[str, str]]:
     )
 
 
-def apply_migrations(dsn: str) -> list[str]:
+def render(sql: str, dimensions: int) -> str:
+    return sql.replace("{{EMBEDDING_DIMENSIONS}}", str(int(dimensions)))
+
+
+def apply_migrations(dsn: str, dimensions: int = 768) -> list[str]:
     applied: list[str] = []
     with psycopg.connect(dsn, prepare_threshold=None, autocommit=False) as conn:
         conn.execute("CREATE SCHEMA IF NOT EXISTS review_radar")
@@ -41,7 +49,7 @@ def apply_migrations(dsn: str) -> list[str]:
                 continue
             # One transaction per file: a failing migration leaves no half-applied schema.
             with conn.transaction():
-                conn.execute(sql)
+                conn.execute(render(sql, dimensions))
                 conn.execute(
                     "INSERT INTO review_radar.schema_migrations (name) VALUES (%s)", (name,)
                 )
@@ -62,8 +70,13 @@ def _dsn() -> str:
 
 
 def main() -> None:
-    applied = apply_migrations(_dsn())
-    print(f"applied: {', '.join(applied)}" if applied else "database is up to date")
+    dimensions = get_settings().embedding_dimensions
+    applied = apply_migrations(_dsn(), dimensions)
+    print(
+        f"applied: {', '.join(applied)} (embedding dimensions {dimensions})"
+        if applied
+        else "database is up to date"
+    )
 
 
 if __name__ == "__main__":

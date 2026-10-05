@@ -118,7 +118,7 @@ def search_memory(ctx: ToolContext, args: SearchMemoryArgs) -> str:
     vector = None
     if ctx.embedder is not None:
         try:
-            vector = ctx.embedder.embed([args.query], label="memory")[0]
+            vector = ctx.embedder.embed([args.query], label="memory", input_type="query")[0]
         except Exception:  # keyword half still works; a failed embed is not the model's fault
             vector = None
     hits = ctx.store.search_memory(ctx.app.id, args.query, vector, limit=6)

@@ -13,7 +13,7 @@ Inputs (evals/fixtures/):
     labels.json            hand labels: category, sentiment, has_device_info (all 200);
                            cluster labels (the 60 most recent)
     recorded_run.json      one real agent run over the 30 most recent reviews (smoke_live.py)
-    embeddings.json        gemini-embedding-001 vectors for the 60 cluster-labelled reviews
+    embeddings.json        configured-provider vectors for the 60 cluster-labelled reviews
     extractions.live.json  optional: a full live extraction of the 200
 """
 
@@ -109,11 +109,15 @@ def live_extract(reviews: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def record_embeddings(reviews: dict[str, dict[str, Any]], ids: list[str]) -> None:
-    from ..config import AppSettings
-    from ..embeddings import GeminiEmbedder
+    from llm_kit import Ledger
 
+    from ..config import AppSettings
+    from ..embeddings import make_embedder
+
+    # The configured provider and dimension (EMBEDDING_PROVIDER / EMBEDDING_DIMENSIONS), so
+    # the clustering sweep scores the vectors production actually stores.
     settings = AppSettings()
-    embedder = GeminiEmbedder(settings.secret(settings.gemini_api_key))
+    embedder = make_embedder(settings, Ledger())
     texts = [
         f"{reviews[i]['title']}. {reviews[i]['body']}"
         if reviews[i]["title"]

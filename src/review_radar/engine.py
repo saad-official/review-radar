@@ -15,7 +15,7 @@ from llm_kit import Ledger
 
 from .config import AppSettings
 from .db import Store, make_store
-from .embeddings import EmbeddingProvider, GeminiEmbedder, HashEmbedder
+from .embeddings import EmbeddingProvider, make_embedder
 from .executors.github import GitHubIssues
 from .ingest.base import ReviewSource
 from .llm import RoutedLLM, TokenPacer
@@ -69,11 +69,12 @@ class Engine:
             )
 
         def build_embedder(ledger: Ledger) -> EmbeddingProvider | None:
-            if settings.embedding_provider == "hash":
-                return HashEmbedder(ledger)
-            if settings.has_key("gemini"):
-                return GeminiEmbedder(settings.secret(settings.gemini_api_key), ledger=ledger)
-            return None  # embed and cluster are skipped, with a note in the trajectory
+            provider = settings.embedding_provider
+            if provider != "hash" and not settings.has_key(provider):
+                return None  # embed and cluster are skipped, with a note in the trajectory
+            # A dimension the model does not support raises here, failing the run with a
+            # message that names the setting rather than a 400 from the provider.
+            return make_embedder(settings, ledger)
 
         return cls(
             settings=settings,

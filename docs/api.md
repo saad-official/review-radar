@@ -182,4 +182,4 @@ Proposal:
 - `GET|POST /api/cron/daily` with `Authorization: Bearer $CRON_SECRET`: for each app,
   resume its unfinished run or start one (`trigger: cron`) and process within the request
   budget → `{apps: [{app_id, run_id, status, resumable}]}`.
-- `GET /api/health` → `{ok, version, providers: {groq, gemini}, embeddings, db, store, dispatch, operator_auth, encryption}`.
+- `GET /api/health` → `{ok, version, providers: {groq, gemini, voyage}, embeddings, db, store, dispatch, operator_auth, encryption}`.

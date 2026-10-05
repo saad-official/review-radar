@@ -7,6 +7,7 @@
 #   G:\Vibe Engineering Apps\.secrets\review-radar-database-url.txt          pooled Neon URL
 #   G:\Vibe Engineering Apps\.secrets\review-radar-database-direct-url.txt   direct Neon URL (migrations)
 #   G:\Vibe Engineering Apps\.secrets\review-radar-cron-secret.txt
+#   G:\Vibe Engineering Apps\.secrets\docpilot-rn-voyage-key.txt          Voyage key (shared with DocPilot)
 #   optional, generated when missing: review-radar-app-encryption-key.txt (openssl rand -base64 32),
 #                                     review-radar-operator-token.txt (openssl rand -hex 24),
 #                                     review-radar-ip-hash-salt.txt
@@ -22,6 +23,10 @@ SECRETS="/g/Vibe Engineering Apps/.secrets"
 JOURNEY_ENV="/g/AI Engineering Journey/.env"
 API_URL="https://review-radar-api.vercel.app"
 WEB_URL="https://getreviewradar.vercel.app"
+# Embeddings: Voyage voyage-4-lite at 1024-d (docs/decisions/0005-voyage-embeddings.md).
+# The dimension is also rendered into the migrations by `uv run migrate` at the end.
+EMBED_PROVIDER="voyage"
+EMBED_DIMENSIONS="1024"
 
 read_env() { grep -E "^\s*$2\s*=" "$1" | head -1 | sed -E "s/^\s*$2\s*=\s*//; s/^[\"']//; s/[\"']\s*$//" | tr -d '\r'; }
 read_secret() { tr -d '\r\n' < "$1"; }
@@ -52,6 +57,7 @@ GEMINI=$(read_env "$JOURNEY_ENV" GEMINI_API_KEY)
 GROQ=$(read_env "$JOURNEY_ENV" GROQ_API_KEY)
 OPENROUTER=$(read_env "$JOURNEY_ENV" OPENROUTER_API_KEY)
 CRON=$(read_secret "$SECRETS/review-radar-cron-secret.txt")
+VOYAGE=$(read_secret "$SECRETS/docpilot-rn-voyage-key.txt")
 DB_URL=$(read_secret "$SECRETS/review-radar-database-url.txt")
 DIRECT_URL=$(read_secret "$SECRETS/review-radar-database-direct-url.txt")
 case "$DB_URL" in postgres*) ;; *) echo "database url must be postgres://"; exit 1;; esac
@@ -68,6 +74,9 @@ set_env . DATABASE_URL "$DB_URL" --sensitive
 set_env . GROQ_API_KEY "$GROQ" --sensitive
 set_env . GEMINI_API_KEY "$GEMINI" --sensitive
 set_env . OPENROUTER_API_KEY "$OPENROUTER" --sensitive
+set_env . VOYAGE_API_KEY "$VOYAGE" --sensitive
+set_env . EMBEDDING_PROVIDER "$EMBED_PROVIDER"
+set_env . EMBEDDING_DIMENSIONS "$EMBED_DIMENSIONS"
 set_env . CRON_SECRET "$CRON" --sensitive
 set_env . OPERATOR_TOKEN "$OPERATOR" --sensitive
 set_env . APP_ENCRYPTION_KEY "$ENC_KEY" --sensitive
@@ -90,6 +99,9 @@ DATABASE_DIRECT_URL=$DIRECT_URL
 GROQ_API_KEY=$GROQ
 GEMINI_API_KEY=$GEMINI
 OPENROUTER_API_KEY=$OPENROUTER
+VOYAGE_API_KEY=$VOYAGE
+EMBEDDING_PROVIDER=$EMBED_PROVIDER
+EMBEDDING_DIMENSIONS=$EMBED_DIMENSIONS
 CRON_SECRET=$CRON
 OPERATOR_TOKEN=$OPERATOR
 APP_ENCRYPTION_KEY=$ENC_KEY

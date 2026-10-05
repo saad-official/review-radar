@@ -16,7 +16,8 @@ scheduler: Vercel Cron (GET /api/cron/daily) · "Run now" in the UI · QStash (o
         │   2 extract   injection detector quarantines obvious attacks (never sent to a model)
         │               complete_structured(ReviewSignalsBatch), 10 reviews per call,
         │               cheap tier (gpt-oss-20b -> gemini-3.5-flash-lite) -> signals
-        │   3 embed     gemini-embedding-001, 768-d, one batch call -> reviews.embedding
+        │   3 embed     voyage-4-lite 1024-d (or gemini-embedding-001 768-d), batches of 100
+        │               -> reviews.embedding; themes that lost a centroid get it rebuilt
         │   4 cluster   memory first: pgvector nearest theme, cosine >= 0.80 joins it;
         │               rest: average-linkage agglomerative (>= 0.78) within theme kind;
         │               one call names new clusters (quotes verified verbatim) -> themes
@@ -43,7 +44,7 @@ scheduler: Vercel Cron (GET /api/cron/daily) · "Run now" in the UI · QStash (o
 | `agent/tools.py` | The four tools, alias ids, idempotency, budgets per run |
 | `agent/guardrails.py`, `agent/injection.py`, `agent/templates.py` | Deterministic checks, the injection detector, the issue template |
 | `llm.py`, `routing.toml` | Provider layer over llm-kit: fallback routes, pacing, quota cooldown, routed `call_tools`, Gemini thought-signature shim |
-| `embeddings.py` | `EmbeddingProvider` protocol, Gemini and offline hash implementations, ledger accounting |
+| `embeddings.py` | `EmbeddingProvider` protocol, Voyage, Gemini and offline hash implementations, `make_embedder` (EMBEDDING_PROVIDER, EMBEDDING_DIMENSIONS), ledger accounting |
 | `service.py` | Use cases: apps, runs (lease, resume), the approval state machine, audit events |
 | `executors/` | The only code that writes outside the database (GitHub issues, CSV export). Never imported by `agent/` (a test enforces it) |
 | `db/` | `Store` protocol, `MemoryStore`, `PostgresStore` (psycopg 3 + pgvector), SQL migrations |

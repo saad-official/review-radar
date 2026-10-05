@@ -23,8 +23,9 @@ OpenAPI: http://localhost:7860/api/docs. Without `DATABASE_URL` the store is in 
 ```bash
 bash scripts/setup-env.sh          # from Git Bash: writes .env and web/.env.local, pushes Vercel env, migrates
 # or by hand: copy .env.example to .env and fill DATABASE_URL, DATABASE_DIRECT_URL,
-# GEMINI_API_KEY, GROQ_API_KEY, OPERATOR_TOKEN, APP_ENCRYPTION_KEY, CRON_SECRET
-uv run migrate                     # applies db/migrations/*.sql once each (uses DATABASE_DIRECT_URL)
+# GEMINI_API_KEY, GROQ_API_KEY, VOYAGE_API_KEY, OPERATOR_TOKEN, APP_ENCRYPTION_KEY, CRON_SECRET
+uv run migrate                     # applies db/migrations/*.sql once each (uses DATABASE_DIRECT_URL),
+                                   # vector columns sized by EMBEDDING_DIMENSIONS
 uv run demo                        # registers the demo app (demo.toml), seeds up to 200 reviews, no model calls
 uv run demo --from-fixture         # seeds the 200 labelled eval reviews instead
 uv run demo --live --max-reviews 30   # one agent run with real models (uses quota)
@@ -33,8 +34,31 @@ uv run uvicorn review_radar.api.main:app --port 7860
 
 `scripts/setup-env.sh` generates `review-radar-app-encryption-key.txt`,
 `review-radar-operator-token.txt` and `review-radar-ip-hash-salt.txt` in
-`G:\Vibe Engineering Apps\.secrets` when missing, and reads the optional
-`review-radar-github-token.txt`.
+`G:\Vibe Engineering Apps\.secrets` when missing, reads the optional
+`review-radar-github-token.txt`, and reads the Voyage key from `docpilot-rn-voyage-key.txt`
+(shared with DocPilot).
+
+## Embeddings: provider and dimension
+
+`EMBEDDING_PROVIDER` picks the embedder (`voyage`, `gemini` or `hash`) and
+`EMBEDDING_DIMENSIONS` its vector size. **The dimension must match the database**: `uv run
+migrate` renders `{{EMBEDDING_DIMENSIONS}}` into the migrations, so `reviews.embedding` and
+`themes.embedding` become `vector(EMBEDDING_DIMENSIONS)`. Voyage `voyage-4-lite` supports
+256/512/1024/2048 (use 1024); Gemini `gemini-embedding-001` 128..3072 (768). See
+[decision 0005](decisions/0005-voyage-embeddings.md).
+
+Switching an existing database (Gemini 768 -> Voyage 1024):
+
+```bash
+# .env: EMBEDDING_PROVIDER=voyage, VOYAGE_API_KEY=..., EMBEDDING_DIMENSIONS=1024
+uv run migrate        # 0002_embedding_dimensions: retypes both columns USING NULL
+```
+
+Every stored vector is dropped (vectors of two models are not comparable). Nothing else is
+lost: the next run re-embeds every analysed review (a review with signals and no embedding
+stays queued) and rebuilds the centroid of each theme from its re-embedded members. 0002
+runs once per database; changing the dimension again later needs a new migration file
+(copy 0002), and the deployed `EMBEDDING_DIMENSIONS` must be changed at the same time.
 
 ## Live smoke and evals
 

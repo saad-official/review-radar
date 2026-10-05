@@ -233,9 +233,9 @@ def create_app(engine: Engine | None = None) -> FastAPI:
         return Health(
             ok=True,
             version=__version__,
-            providers={name: s.has_key(name) for name in ("groq", "gemini")},
+            providers={name: s.has_key(name) for name in ("groq", "gemini", "voyage")},
             embeddings=s.embedding_provider
-            if (s.embedding_provider == "hash" or s.has_key("gemini"))
+            if (s.embedding_provider == "hash" or s.has_key(s.embedding_provider))
             else "none",
             db=engine.store.ping(),
             store="memory" if isinstance(engine.store, MemoryStore) else "postgres",

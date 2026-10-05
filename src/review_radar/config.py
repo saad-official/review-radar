@@ -10,9 +10,10 @@ in-memory store, no APP_ENCRYPTION_KEY -> per-app GitHub tokens cannot be stored
 from __future__ import annotations
 
 from functools import lru_cache
+from typing import Literal
 
 from llm_kit import Settings as LLMSettings
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -31,9 +32,20 @@ class AppSettings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434/v1"
 
     # --- embeddings -----------------------------------------------------------------
-    # "gemini" (gemini-embedding-001 at 768 dimensions) or "hash" (deterministic, offline,
-    # for tests and keyless local runs; useless for real similarity).
-    embedding_provider: str = "gemini"
+    # "gemini" (gemini-embedding-001; any 128..3072 dims), "voyage" (voyage-4-lite; 256, 512,
+    # 1024 or 2048 dims) or "hash" (deterministic, offline, for tests and keyless local
+    # runs; useless for real similarity). See docs/decisions/0005-voyage-embeddings.md.
+    embedding_provider: Literal["gemini", "voyage", "hash"] = "gemini"
+    voyage_api_key: SecretStr | None = None
+    # The dimension of reviews.embedding / themes.embedding. A deployment choice: `uv run
+    # migrate` renders it into the migrations, and the embedder is asked for exactly this
+    # many dimensions, so the two always agree. 768 for Gemini, 1024 for Voyage.
+    embedding_dimensions: int = Field(default=768, ge=64, le=4096)
+
+    @field_validator("embedding_provider", mode="before")
+    @classmethod
+    def _lower_provider(cls, value: object) -> object:
+        return value.strip().lower() if isinstance(value, str) else value
 
     # --- secrets for writes ------------------------------------------------------------
     # Bearer token for every write route (single operator, no accounts in the MVP).

@@ -76,3 +76,53 @@ def test_end_to_end_on_postgres(settings, pg_store):
                 conn.execute(sql, (run.id,))
     assert pg_store.delete_app(app.id)  # cascades through the append-only tables
     assert pg_store.get_run(run.id) is None
+
+
+def test_dimension_migration_nulls_vectors_keeps_indexes_and_runs_recover(settings, pg_store):
+    """0002 at a new EMBEDDING_DIMENSIONS (768 -> 1024, i.e. Gemini -> Voyage): both vector
+    columns are retyped, every stored vector becomes NULL, an index on the column survives,
+    and the next run re-embeds the analysed reviews and restores the theme centroids."""
+    import psycopg
+
+    from review_radar.db.migrate import apply_migrations
+    from review_radar.embeddings import HashEmbedder
+
+    engine = make_engine(settings, store=pg_store)
+    app = create_app(engine, store_kind="ios", store_id="1", name="pg", github_repo="a/b")
+    service = RunService(engine)
+    assert service.process(service.create_run(app.id).id).status == "done"
+
+    dims_sql = """SELECT c.relname, a.atttypmod FROM pg_attribute a
+                  JOIN pg_class c ON c.oid = a.attrelid
+                  JOIN pg_namespace n ON n.oid = c.relnamespace
+                  WHERE n.nspname = 'review_radar' AND a.attname = 'embedding'"""
+    with psycopg.connect(DSN, autocommit=True) as conn:
+        assert dict(conn.execute(dims_sql).fetchall()) == {"reviews": 768, "themes": 768}
+        conn.execute(
+            "CREATE INDEX themes_embedding_hnsw ON review_radar.themes "
+            "USING hnsw (embedding vector_cosine_ops)"
+        )
+        # Pretend 0002 has not run yet (it ran at 768 as a no-op in the fixture).
+        conn.execute(
+            "DELETE FROM review_radar.schema_migrations "
+            "WHERE name = '0002_embedding_dimensions.sql'"
+        )
+    assert apply_migrations(DSN, 1024) == ["0002_embedding_dimensions.sql"]
+    with psycopg.connect(DSN, autocommit=True) as conn:
+        assert dict(conn.execute(dims_sql).fetchall()) == {"reviews": 1024, "themes": 1024}
+        for table in ("reviews", "themes"):
+            row = conn.execute(
+                f"SELECT count(*) FROM review_radar.{table} WHERE embedding IS NOT NULL"
+            ).fetchone()
+            assert row is not None and row[0] == 0
+        row = conn.execute(
+            "SELECT count(*) FROM pg_indexes WHERE indexname = 'themes_embedding_hnsw'"
+        ).fetchone()
+        assert row is not None and row[0] == 1
+    assert len(pg_store.unprocessed_review_ids(app.id, 50)) == 11  # analysed, re-queued
+
+    engine.embedder_builder = lambda ledger: HashEmbedder(ledger, dimensions=1024)
+    assert service.process(service.create_run(app.id).id).status == "done"
+    assert pg_store.unprocessed_review_ids(app.id, 50) == []
+    themes = pg_store.list_themes(app.id)
+    assert themes and all(pg_store.get_theme(t.id).embedding is not None for t in themes)

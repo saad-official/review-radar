@@ -38,7 +38,8 @@ More: [architecture](docs/architecture.md) · [API](docs/api.md) · [security](d
 Stack: Python 3.12, FastAPI on Vercel's Python runtime, Neon Postgres + pgvector (psycopg 3),
 [llm-kit](https://github.com/saad-official/ai-engineering-journey/tree/main/packages/llm-kit)
 (pinned) for every model call: Groq `gpt-oss-20b` / `gpt-oss-120b` with Gemini
-`gemini-3.5-flash-lite` as fallback, `gemini-embedding-001` (768-d) for embeddings.
+`gemini-3.5-flash-lite` as fallback, Voyage `voyage-4-lite` (1024-d) for embeddings
+(`gemini-embedding-001` 768-d still selectable; [decision 0005](docs/decisions/0005-voyage-embeddings.md)).
 
 ## Quick start
 
