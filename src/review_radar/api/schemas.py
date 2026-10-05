@@ -6,7 +6,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, SecretStr, field_validator
+from pydantic import BaseModel, Field, SecretStr, field_validator, model_validator
 
 from ..executors.github import REPO
 from ..models import (
@@ -94,8 +94,23 @@ class AppView(BaseModel):
     has_github_token: bool
     created_at: datetime
     counts: dict[str, Any] = Field(description="reviews, analysed, themes, proposals: {status: n}")
+    # Flat aliases of `counts` for the web UI (spec §6 App shape).
+    review_count: int = 0
+    theme_count: int = 0
+    proposals_waiting: int = 0
     new_reviews: int = Field(default=0, description="new reviews fetched by the latest run")
     last_run: RunSummary | None = None
+
+    @model_validator(mode="after")
+    def _flatten_counts(self) -> AppView:
+        counts = self.counts or {}
+        self.review_count = int(counts.get("reviews") or 0)
+        self.theme_count = int(counts.get("themes") or 0)
+        proposals = counts.get("proposals") or {}
+        self.proposals_waiting = (
+            int(proposals.get("proposed") or 0) if isinstance(proposals, dict) else 0
+        )
+        return self
 
 
 class RunCreate(BaseModel):
